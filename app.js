@@ -31,6 +31,7 @@ app.use(favicon(__dirname + '/public/favicon.ico'));
 //路徑設定，有get與post指令
 app.get('/', page.index);
 app.post('/collect',page.collect);
+app.post('/remove',page.remove);
 app.post('/delete',page.delete);
 app.post('/edit',page.edit);
 app.post('/postAjax',page.postAjax);

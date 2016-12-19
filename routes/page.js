@@ -13,17 +13,20 @@ exports.index = function(req, res) {
 //列出資料
 exports.list = function(req, res) {
     //res.render('pages/index');
-    mc.connect('mongodb://zitim:zitim@ds139288.mlab.com:39288/googlemaps', (err,db) => {
-        var collection = db.collection('res_favorite');
+    mc.connect('mongodb://tainan:tainan@ds139288.mlab.com:39288/tainan', (err,db) => {
+        var collection = db.collection('info');
 
-        collection.find().toArray((err, result) => {
-        
+         collection.find().toArray((err, result) => {
+            //console.log(123);
             if(!err){
-                for (var i = 0; i <result.length ; i++) {
-                      a[i]=result[i];
+                //console.log(123);
+                for (var i = 0; i < result.length; i++) {
+                    //console.log(result[i]);
+                      //a[i]=result[i];
+                      //console.log(a);
                 }
-                //console.log(a);
-                res.send(a);
+                
+                res.send(result);
                 // res.render('pages/index', {
                 //              listdata: 1
                 // });
@@ -36,37 +39,61 @@ exports.list = function(req, res) {
     });
 };
 
-//傳統輸入 
+//收藏 
 exports.collect = function(req, res) {
     
-    mc.connect('mongodb://zitim:zitim@ds139288.mlab.com:39288/googlemaps', (err,db) => {
-        var collection = db.collection('res_favorite');
+    mc.connect('mongodb://tainan:tainan@ds139288.mlab.com:39288/tainan', (err,db) => {
+        var collection = db.collection('info');
+    // //新增資料
 
-    //新增資料
         var res_id = req.body.res_id.replace( /[\r\n\"]/g , '' );
-        var res_name = req.body.res_name.replace( /[\r\n\"]/g , '' );
-        var res_address = req.body.res_address.replace( /[\r\n\"]/g , '' );
-        var res_phone = req.body.res_phone.replace( /[\r\n\"]/g , '' );
-        var res_time = req.body.res_time.replace( /[\r\n\"]/g , '' );
-        //console.log(text);
+        console.log(res_id);
+        //var res_favorite = req.body.res_name.replace( /[\r\n\"]/g , '' );
+    //     var res_address = req.body.res_address.replace( /[\r\n\"]/g , '' );
+    //     var res_phone = req.body.res_phone.replace( /[\r\n\"]/g , '' );
+    //     var res_time = req.body.res_time.replace( /[\r\n\"]/g , '' );
+    //     //console.log(text);
 
-        var data = {
-            //title: str,
-            res_id: res_id,
-            res_name: res_name,
-            res_address: res_address,
-            res_phone: res_phone,
-            res_time: res_time,
-            res_favorite: 'true'
-        };
-        collection.insert(data, (err, result) => {
+        var condition = {"id": res_id};
+        var new_str = {$set: {"favorite": true}};
+        collection.update(condition, new_str, (err, result) => {
             if(!err){
                 //console.log(result);
                 res.send('success');
             }else{
-                console.log(err);
-
+                res.send('error');
             }
+ 
+         db.close()
+         });
+    });
+    //res.render('pages/success');
+};
+//取消
+exports.remove = function(req, res) {
+    
+    mc.connect('mongodb://tainan:tainan@ds139288.mlab.com:39288/tainan', (err,db) => {
+        var collection = db.collection('info');
+    // //新增資料
+
+        var res_id = req.body.res_id.replace( /[\r\n\"]/g , '' );
+        console.log(res_id);
+        //var res_favorite = req.body.res_name.replace( /[\r\n\"]/g , '' );
+    //     var res_address = req.body.res_address.replace( /[\r\n\"]/g , '' );
+    //     var res_phone = req.body.res_phone.replace( /[\r\n\"]/g , '' );
+    //     var res_time = req.body.res_time.replace( /[\r\n\"]/g , '' );
+    //     //console.log(text);
+
+        var condition = {"id": res_id};
+        var new_str = {$set: {"favorite": false}};
+        collection.update(condition, new_str, (err, result) => {
+            if(!err){
+                //console.log(result);
+                res.send('success');
+            }else{
+                res.send('error');
+            }
+ 
         db.close()
         });
     });
