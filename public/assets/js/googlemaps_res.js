@@ -3,6 +3,7 @@ var all=[];
 var favorite=[];
 var focusInfoWindow;
 var map;
+var user_id=6;
 
   jQuery(document).ready(function($) {
       // $.get('/getJson').success(function(restaurants){
@@ -26,8 +27,8 @@ var map;
       }
       // console.log(data[293].餐飲店家名稱);
       // console.log(data[293].favorite);
-      //  console.log(data[292].餐飲店家名稱);
-      // console.log(data[292].favorite);
+      //console.log(data[293].餐飲店家名稱);
+      //console.log(data[293].favorite);
       //  console.log(data[291].餐飲店家名稱);
       // console.log(data[291].favorite);
       show_Data(data);
@@ -37,15 +38,20 @@ var map;
   //setMarkers(map);
 
   function show_Data(restaurants) {
+
     //console.log(restaurants[0].favorite);
     for (var i = 0 ; i < restaurants.length; i++) {
+      //console.log(restaurants[i].favorite);
+      //console.log(restaurants[i].favorite);
+      //var fav = restaurants[i].favorite;
       // var restaurant = restaurants[i];
       //var dataFavorite = data[i].favorite;
-      //console.log(restaurants[115].favorite);
-      if (restaurants[i].favorite == false) {
-          dataFavoriteHtml = '<img src="https://raw.githubusercontent.com/zitim/Tainan_restaurant/master/public/assets/img/empty-heart.png">';
-      } else {
+      //console.log(restaurants[i].favorite.indexOf(user_id) != null);
+      //if (restaurants[i].favorite == false) {
+      if (restaurants[i].favorite.indexOf(user_id) >=0) {  
           dataFavoriteHtml = '<img src="https://raw.githubusercontent.com/zitim/Tainan_restaurant/master/public/assets/img/heart.png">';
+      } else {
+          dataFavoriteHtml = '<img src="https://raw.githubusercontent.com/zitim/Tainan_restaurant/master/public/assets/img/empty-heart.png">';
       }
 
       createMarker(restaurants[i].id,restaurants[i].餐飲店家名稱,restaurants[i].X坐標,restaurants[i].Y坐標,restaurants[i].店家地址,restaurants[i].店家電話,restaurants[i].營業時間,dataFavoriteHtml);
