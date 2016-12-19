@@ -3,7 +3,8 @@ var all=[];
 var favorite=[];
 var focusInfoWindow;
 var map;
-var user_id=6;
+var user_id=81;
+var markers = [];
 
   jQuery(document).ready(function($) {
       // $.get('/getJson').success(function(restaurants){
@@ -21,12 +22,9 @@ var user_id=6;
     //show_Data();
   }
   function includeData() {
-
     $.get( "/list", function( data ) {
-      for (var i = 0; i < data.length; i++) {
-      }
-      // console.log(data[293].餐飲店家名稱);
-      // console.log(data[293].favorite);
+      // console.log(data[0].餐飲店家名稱);
+      //a.push(data[0]);
       //console.log(data[293].餐飲店家名稱);
       //console.log(data[293].favorite);
       //  console.log(data[291].餐飲店家名稱);
@@ -54,8 +52,9 @@ var user_id=6;
           dataFavoriteHtml = '<img src="https://raw.githubusercontent.com/zitim/Tainan_restaurant/master/public/assets/img/empty-heart.png">';
       }
 
-      createMarker(restaurants[i].id,restaurants[i].餐飲店家名稱,restaurants[i].X坐標,restaurants[i].Y坐標,restaurants[i].店家地址,restaurants[i].店家電話,restaurants[i].營業時間,dataFavoriteHtml);
+      create_Marker(restaurants[i].id,restaurants[i].餐飲店家名稱,restaurants[i].X坐標,restaurants[i].Y坐標,restaurants[i].店家地址,restaurants[i].店家電話,restaurants[i].營業時間,dataFavoriteHtml);
       //setMarkers(restaurants);
+      
       $('#sidebar-left' ).append(
           '<li><h3>'+restaurants[i].餐飲店家名稱+'</h3></div>'+
           restaurants[i].店家地址+'<br/>'+
@@ -67,7 +66,7 @@ var user_id=6;
     //   console.log(restaurant[2]);
   }
 
-  function createMarker(id,res_name,res_X,res_Y,res_address,res_phone,res_time,favorite) {
+  function create_Marker(id,res_name,res_X,res_Y,res_address,res_phone,res_time,favorite) {
     // Adds markers to the map.
 
     infowindow = new google.maps.InfoWindow();
@@ -99,6 +98,7 @@ var user_id=6;
                     //title: restaurant[0],
                     //zIndex: restaurant[3]
     });
+    markers.push(marker);
 
     var infowindow = new google.maps.InfoWindow({
         content: 
@@ -114,17 +114,13 @@ var user_id=6;
         maxWidth: 400
     });
 
-         marker.addListener('click', function() {
-          infowindow.open(map, marker);
-          map.zoom = 25;
+    marker.addListener('click', function() {
+      infowindow.open(map, marker);
+      map.zoom = 25;
           //map.panTo(marker.getPosition());
-        });
+    });
   }
 
-    // Shapes define the clickable region of the icon. The type defines an HTML
-    // <area> element 'poly' which traces out a polygon as a series of X,Y points.
-    // The final coordinate closes the poly by connecting to the first coordinate.
-  
 
 function focusLocation(dataCount,marker){
   console.log(dataCount);
@@ -153,34 +149,95 @@ function focusLocation(dataCount,marker){
 
     $('.filter').hide();
 }
-  function change_Favorite(res_id,res_name,res_address,res_phone,res_time,dataElemet){
+function change_Favorite(res_id,res_name,res_address,res_phone,res_time,dataElemet){
 
-      if(dataElemet.html() == '<img src="https://raw.githubusercontent.com/zitim/Tainan_restaurant/master/public/assets/img/empty-heart.png">'){
-        dataElemet.html('<img src="https://raw.githubusercontent.com/zitim/Tainan_restaurant/master/public/assets/img/heart.png">');
+  if(dataElemet.html() == '<img src="https://raw.githubusercontent.com/zitim/Tainan_restaurant/master/public/assets/img/empty-heart.png">'){
+    dataElemet.html('<img src="https://raw.githubusercontent.com/zitim/Tainan_restaurant/master/public/assets/img/heart.png">');
         
-        $.post('/collect', {'res_id': res_id,'user_id': user_id}).success(function(data){
+    $.post('/collect', {'res_id': res_id,'user_id': user_id}).success(function(data){
               //console.log(res_id);
-              if(data=='success'){
+      if(data=='success'){
                 //window.location.reload(" page.index ");
                 //alert('刪除成功');
-              }else{
+      }else{
                 //alert('刪除失敗');
-              }
-          });
-        
-      }else {
-        dataElemet.html('<img src="https://raw.githubusercontent.com/zitim/Tainan_restaurant/master/public/assets/img/empty-heart.png">');
-
-        $.post('/remove', {'res_id': res_id,'user_id': user_id}).success(function(data){
-              //console.log(res_id);
-              if(data=='success'){
-                //window.location.reload(" page.index ");
-                //alert('刪除成功');
-              }else{
-                //alert('刪除失敗');
-              }
-          });
       }
-  }
+    });
+        
+  }else {
+    dataElemet.html('<img src="https://raw.githubusercontent.com/zitim/Tainan_restaurant/master/public/assets/img/empty-heart.png">');
 
+      $.post('/remove', {'res_id': res_id,'user_id': user_id}).success(function(data){
+              //console.log(res_id);
+        if(data=='success'){
+                //window.location.reload(" page.index ");
+                //alert('刪除成功');
+        }else{
+                //alert('刪除失敗');
+        }
+    });
+  }
+}
+function show_Favorite(){
+  var favorite_Restaurant=[]
+  deleteMarkers();
+  document.getElementById('sidebar-left').innerHTML = "";
+      
+  // $.get( "/list", function( data ) {
+  //   var favorite_Restaurant =[];
+  //   favorite_Restaurant.push(data[0]);
+  //   console.log(favorite_Restaurant);
+  //   //console.log(data[0].favorite.indexOf(user_id));
+  //     console.log(data[0].餐飲店家名稱);
+  //     //console.log(123);
+  //     //  console.log(data[291].餐飲店家名稱);
+  //     // console.log(data[291].favorite);
+
+  //     show_Data(favorite_Restaurant);
+  //     // if (data[0].favorite.indexOf(user_id) >=0) {
+        
+  //     // }
+      
+
+  // });
+
+  
+  $.get( "/list", function( data ) {
+    
+    for (var i = 0; i < data.length; i++) {
+      if (data[i].favorite.indexOf(user_id)>=0) {
+        favorite_Restaurant.push(data[i]);
+      }
+    }
+      //deleteMarkers(data)
+      // console.log(data[0].餐飲店家名稱);
+    //console.log(data[0]);
+    
+    //console.log(favorite_Restaurant);
+      //console.log(data[293].餐飲店家名稱);
+      //console.log(data[293].favorite);
+      //  console.log(data[291].餐飲店家名稱);
+      // console.log(data[291].favorite);
+    show_Data(favorite_Restaurant);
+    var center = { lat: 22.999533, lng: 120.203401 };
+    map.panTo(center);
+    map.setZoom(11);
+
+  });
+}
+function setMapOnAll(map) {
+  for (var i = 0; i < markers.length; i++) {
+    markers[i].setMap(map);
+  }
+}
+
+function clearMarkers() {
+  setMapOnAll(null);
+}
+
+function deleteMarkers() {
+  //console.log(123);
+   clearMarkers();
+   markers = [];
+}
 
