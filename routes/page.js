@@ -47,6 +47,7 @@ exports.collect = function(req, res) {
     // //新增資料
 
         var res_id = req.body.res_id.replace( /[\r\n\"]/g , '' );
+        var user_id = req.body.user_id.replace( /[\r\n\"]/g , '' );
         console.log(res_id);
         //var res_favorite = req.body.res_name.replace( /[\r\n\"]/g , '' );
     //     var res_address = req.body.res_address.replace( /[\r\n\"]/g , '' );
@@ -55,7 +56,7 @@ exports.collect = function(req, res) {
     //     //console.log(text);
 
         var condition = {"id": res_id};
-        var new_str = {$set: {"favorite": true}};
+        var new_str = {$push: {"favorite": 123}};
         collection.update(condition, new_str, (err, result) => {
             if(!err){
                 //console.log(result);
@@ -77,6 +78,7 @@ exports.remove = function(req, res) {
     // //新增資料
 
         var res_id = req.body.res_id.replace( /[\r\n\"]/g , '' );
+        var user_id = req.body.user_id.replace( /[\r\n\"]/g , '' );
         console.log(res_id);
         //var res_favorite = req.body.res_name.replace( /[\r\n\"]/g , '' );
     //     var res_address = req.body.res_address.replace( /[\r\n\"]/g , '' );
@@ -85,7 +87,7 @@ exports.remove = function(req, res) {
     //     //console.log(text);
 
         var condition = {"id": res_id};
-        var new_str = {$set: {"favorite": false}};
+        var new_str = {$pull: {"favorite": 123}};
         collection.update(condition, new_str, (err, result) => {
             if(!err){
                 //console.log(result);

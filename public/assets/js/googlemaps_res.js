@@ -152,7 +152,7 @@ function focusLocation(dataCount,marker){
       if(dataElemet.html() == '<img src="https://raw.githubusercontent.com/zitim/Tainan_restaurant/master/public/assets/img/empty-heart.png">'){
         dataElemet.html('<img src="https://raw.githubusercontent.com/zitim/Tainan_restaurant/master/public/assets/img/heart.png">');
         
-        $.post('/collect', {'res_id': res_id}).success(function(data){
+        $.post('/collect', {'res_id': res_id,'user_id': user_id}).success(function(data){
               //console.log(res_id);
               if(data=='success'){
                 //window.location.reload(" page.index ");
@@ -165,7 +165,7 @@ function focusLocation(dataCount,marker){
       }else {
         dataElemet.html('<img src="https://raw.githubusercontent.com/zitim/Tainan_restaurant/master/public/assets/img/empty-heart.png">');
 
-        $.post('/remove', {'res_id': res_id}).success(function(data){
+        $.post('/remove', {'res_id': res_id,'user_id': user_id}).success(function(data){
               //console.log(res_id);
               if(data=='success'){
                 //window.location.reload(" page.index ");
