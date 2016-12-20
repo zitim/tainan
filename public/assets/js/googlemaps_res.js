@@ -53,9 +53,7 @@ var infoWindows=[];
       //setMarkers(restaurants);
       
      $('#sidebar-left' ).append(
-
           '<li id="fr"><a href="javascript:focusLocation(\'' + i + '\')" class="clearfix"><div id="fr2"  class="chcolor"><h3>'+restaurants[i].餐飲店家名稱+'</h3>'+
-
           restaurants[i].店家地址+'<br/>'+
           restaurants[i].店家電話+'<br/>'+
           restaurants[i].營業時間+'<br/>'+
