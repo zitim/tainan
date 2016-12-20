@@ -3,6 +3,8 @@ var all=[];
 var favorite=[];
 var focusInfoWindow;
 var map;
+var user_id=80;
+var markers = [];
 
   jQuery(document).ready(function($) {
       // $.get('/getJson').success(function(restaurants){
@@ -20,14 +22,11 @@ var map;
     //show_Data();
   }
   function includeData() {
-
     $.get( "/list", function( data ) {
-      for (var i = 0; i < data.length; i++) {
-      }
-      // console.log(data[293].餐飲店家名稱);
-      // console.log(data[293].favorite);
-      //  console.log(data[292].餐飲店家名稱);
-      // console.log(data[292].favorite);
+      // console.log(data[0].餐飲店家名稱);
+      //a.push(data[0]);
+      //console.log(data[293].餐飲店家名稱);
+      //console.log(data[293].favorite);
       //  console.log(data[291].餐飲店家名稱);
       // console.log(data[291].favorite);
       show_Data(data);
@@ -37,19 +36,25 @@ var map;
   //setMarkers(map);
 
   function show_Data(restaurants) {
+
     //console.log(restaurants[0].favorite);
     for (var i = 0 ; i < restaurants.length; i++) {
+      //console.log(restaurants[i].favorite);
+      //console.log(restaurants[i].favorite);
+      //var fav = restaurants[i].favorite;
       // var restaurant = restaurants[i];
       //var dataFavorite = data[i].favorite;
-      //console.log(restaurants[115].favorite);
-      if (restaurants[i].favorite == false) {
-          dataFavoriteHtml = '<img src="https://raw.githubusercontent.com/zitim/Tainan_restaurant/master/public/assets/img/empty-heart.png">';
-      } else {
+      //console.log(restaurants[i].favorite.indexOf(user_id) != null);
+      //if (restaurants[i].favorite == false) {
+      if (restaurants[i].favorite.indexOf(user_id) >=0) {  
           dataFavoriteHtml = '<img src="https://raw.githubusercontent.com/zitim/Tainan_restaurant/master/public/assets/img/heart.png">';
+      } else {
+          dataFavoriteHtml = '<img src="https://raw.githubusercontent.com/zitim/Tainan_restaurant/master/public/assets/img/empty-heart.png">';
       }
 
-      createMarker(restaurants[i].id,restaurants[i].餐飲店家名稱,restaurants[i].X坐標,restaurants[i].Y坐標,restaurants[i].店家地址,restaurants[i].店家電話,restaurants[i].營業時間,dataFavoriteHtml);
+      create_Marker(restaurants[i].id,restaurants[i].餐飲店家名稱,restaurants[i].X坐標,restaurants[i].Y坐標,restaurants[i].店家地址,restaurants[i].店家電話,restaurants[i].營業時間,dataFavoriteHtml);
       //setMarkers(restaurants);
+      
       $('#sidebar-left' ).append(
           '<li><h3>'+restaurants[i].餐飲店家名稱+'</h3></div>'+
           restaurants[i].店家地址+'<br/>'+
@@ -61,7 +66,7 @@ var map;
     //   console.log(restaurant[2]);
   }
 
-  function createMarker(id,res_name,res_X,res_Y,res_address,res_phone,res_time,favorite) {
+  function create_Marker(id,res_name,res_X,res_Y,res_address,res_phone,res_time,favorite) {
     // Adds markers to the map.
 
     infowindow = new google.maps.InfoWindow();
@@ -93,6 +98,7 @@ var map;
                     //title: restaurant[0],
                     //zIndex: restaurant[3]
     });
+    markers.push(marker);
 
     var infowindow = new google.maps.InfoWindow({
         content: 
@@ -108,17 +114,13 @@ var map;
         maxWidth: 400
     });
 
-         marker.addListener('click', function() {
-          infowindow.open(map, marker);
-          map.zoom = 25;
+    marker.addListener('click', function() {
+      infowindow.open(map, marker);
+      map.zoom = 25;
           //map.panTo(marker.getPosition());
-        });
+    });
   }
 
-    // Shapes define the clickable region of the icon. The type defines an HTML
-    // <area> element 'poly' which traces out a polygon as a series of X,Y points.
-    // The final coordinate closes the poly by connecting to the first coordinate.
-  
 
 function focusLocation(dataCount,marker){
   console.log(dataCount);
@@ -147,34 +149,68 @@ function focusLocation(dataCount,marker){
 
     $('.filter').hide();
 }
-  function change_Favorite(res_id,res_name,res_address,res_phone,res_time,dataElemet){
+function change_Favorite(res_id,res_name,res_address,res_phone,res_time,dataElemet){
 
-      if(dataElemet.html() == '<img src="https://raw.githubusercontent.com/zitim/Tainan_restaurant/master/public/assets/img/empty-heart.png">'){
-        dataElemet.html('<img src="https://raw.githubusercontent.com/zitim/Tainan_restaurant/master/public/assets/img/heart.png">');
+  if(dataElemet.html() == '<img src="https://raw.githubusercontent.com/zitim/Tainan_restaurant/master/public/assets/img/empty-heart.png">'){
+    dataElemet.html('<img src="https://raw.githubusercontent.com/zitim/Tainan_restaurant/master/public/assets/img/heart.png">');
         
-        $.post('/collect', {'res_id': res_id}).success(function(data){
+    $.post('/collect', {'res_id': res_id,'user_id': user_id}).success(function(data){
               //console.log(res_id);
-              if(data=='success'){
+      if(data=='success'){
                 //window.location.reload(" page.index ");
                 //alert('刪除成功');
-              }else{
+      }else{
                 //alert('刪除失敗');
-              }
-          });
-        
-      }else {
-        dataElemet.html('<img src="https://raw.githubusercontent.com/zitim/Tainan_restaurant/master/public/assets/img/empty-heart.png">');
-
-        $.post('/remove', {'res_id': res_id}).success(function(data){
-              //console.log(res_id);
-              if(data=='success'){
-                //window.location.reload(" page.index ");
-                //alert('刪除成功');
-              }else{
-                //alert('刪除失敗');
-              }
-          });
       }
-  }
+    });
+        
+  }else {
+    dataElemet.html('<img src="https://raw.githubusercontent.com/zitim/Tainan_restaurant/master/public/assets/img/empty-heart.png">');
 
+      $.post('/remove', {'res_id': res_id,'user_id': user_id}).success(function(data){
+              //console.log(res_id);
+        if(data=='success'){
+                //window.location.reload(" page.index ");
+                //alert('刪除成功');
+        }else{
+                //alert('刪除失敗');
+        }
+    });
+  }
+}
+function show_Favorite(){
+  var show_Favorite=[]
+  deleteMarkers();
+  document.getElementById('sidebar-left').innerHTML = "";
+      
+  $.get( "/list", function( data ) {
+    
+    for (var i = 0; i < data.length; i++) {
+      if (data[i].favorite.indexOf(user_id)>=0) {
+        show_Favorite.push(data[i]);
+      }
+    }
+
+    show_Data(show_Favorite);
+    var center = { lat: 23.099533, lng: 120.203401 };
+    map.panTo(center);
+    map.setZoom(10);
+
+  });
+}
+function setMapOnAll(map) {
+  for (var i = 0; i < markers.length; i++) {
+    markers[i].setMap(map);
+  }
+}
+
+function clearMarkers() {
+  setMapOnAll(null);
+}
+
+function deleteMarkers() {
+  //console.log(123);
+   clearMarkers();
+   markers = [];
+}
 
