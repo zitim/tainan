@@ -52,14 +52,14 @@ var infoWindows=[];
       create_Marker(restaurants[i].id,restaurants[i].餐飲店家名稱,restaurants[i].X坐標,restaurants[i].Y坐標,restaurants[i].店家地址,restaurants[i].店家電話,restaurants[i].營業時間,dataFavoriteHtml);
       //setMarkers(restaurants);
       
-     $('#sidebar-left' ).append(
+      $('#sidebar-left' ).append(
           '<li id="fr"><a href="javascript:focusLocation(\'' + i + '\')" class="clearfix"><div id="fr2"  class="chcolor"><h3>'+restaurants[i].餐飲店家名稱+'</h3>'+
           restaurants[i].店家地址+'<br/>'+
           restaurants[i].店家電話+'<br/>'+
           restaurants[i].營業時間+'<br/>'+
           '<button id="favorite" onclick="change_Favorite(\''+restaurants[i].id+'\',\''+restaurants[i].餐飲店家名稱+'\',\''+restaurants[i].店家地址+'\',\''+restaurants[i].店家電話+'\',\''+restaurants[i].營業時間+'\', $(this))">'+dataFavoriteHtml+'</button></li>'+
           '</a></div></li>');
-      }
+      }s
     //   console.log(restaurant[2]);
   }
 
@@ -72,9 +72,9 @@ var infoWindows=[];
     // Origins, anchor positions and coordinates of the marker increase in the X
     // direction to the right and in the Y direction down.
     var image = {
-      url: 'assets/img/bitnami.ico',
+      url: 'https://raw.githubusercontent.com/zitim/tainan/master/public/assets/img/lollipop%20(3).png',
       // This marker is 20 pixels wide by 32 pixels high.
-      size: new google.maps.Size(20, 32),
+      size: new google.maps.Size(30, 32),
       // The origin for this image is (0, 0).
       origin: new google.maps.Point(0, 0),
       // The anchor for this image is the base of the flagpole at (0, 32).
@@ -89,7 +89,7 @@ var infoWindows=[];
     var marker = new google.maps.Marker({
         position: {lat: res_Y, lng: res_X},
         map: map,
-                    //icon: image,
+        icon: image,
                     //shape: shape,
                     //title: restaurant[0],
                     //zIndex: restaurant[3]
@@ -112,10 +112,15 @@ var infoWindows=[];
     infoWindows.push(infowindow);
 
     marker.addListener('click', function() {
+      if (focusInfoWindow != null) {
+          focusInfoWindow.close();
+      }
       infowindow.open(map, marker);
+      focusInfoWindow = infoWindow;
       map.zoom = 25;
       map.panTo(marker.getPosition());
     });
+    
   }
 
   function focusLocation(dataCount) {
@@ -146,6 +151,7 @@ var infoWindows=[];
 
     $('.filter').hide();
   }
+
 
   function change_Favorite(res_id,res_name,res_address,res_phone,res_time,dataElemet){
 
@@ -196,42 +202,42 @@ var infoWindows=[];
 
     });
   }
+  function working(){
+    var working=[]
+    deleteMarkers();
+    document.getElementById('sidebar-left').innerHTML = ""; 
+    // var day=date.getDay();
+    var date=new Date();
+    var day=(date.getDay()+1);
+    var hour=(date.getHours());
+    var minute=(date.getMinutes());
 
-function working(){
-  var working=[]
-  deleteMarkers();
-  document.getElementById('sidebar-left').innerHTML = ""; 
-  // var day=date.getDay();
-  var date=new Date();
-  var day=(date.getDay()+1);
-  var hour=(date.getHours());
-  var minute=(date.getMinutes());
+    $.get( "/list", function( data ) {
+      for(var i=0;i<data.length;i++){
+        var format=(data[i].營業時間)
+      .replace(/週/g,"")
+      .replace(/一/g,"1")
+      .replace(/二/g,"2")
+      .replace(/三/g,"3")
+      .replace(/四/g,"4")
+      .replace(/五/g,"5")
+      .replace(/六/g,"6")
+      .replace(/日/g,"7");
+      
+      if(format.indexOf('/')==-1){
+       if(day>=format[0]&&day<=format[2]){
+          working.push(data[i]);
+       }
+      }
 
-  $.get( "/list", function( data ) {
-    for(var i=0;i<data.length;i++){
-      var format=(data[i].營業時間)
-    .replace(/週/g,"")
-    .replace(/一/g,"1")
-    .replace(/二/g,"2")
-    .replace(/三/g,"3")
-    .replace(/四/g,"4")
-    .replace(/五/g,"5")
-    .replace(/六/g,"6")
-    .replace(/日/g,"7");
-    
-    if(format.indexOf('/')==-1){
-     if(day>=format[0]&&day<=format[2]){
-        working.push(data[i]);
-     }
-    }
-
-    }
-    show_Data(working);
-    var center = { lat: 23.099533, lng: 120.203401 };
-    map.panTo(center);
-    map.setZoom(10);
-  });
-}
+      }
+      show_Data(working);
+      var center = { lat: 23.099533, lng: 120.203401 };
+      map.panTo(center);
+      map.setZoom(10);
+    });
+  }
+  
   function setMapOnAll(map) {
     for (var i = 0; i < markers.length; i++) {
       markers[i].setMap(map);
