@@ -7,6 +7,8 @@
 }*/
 ul { list-style:none; 
 }
+li { list-style:none; 
+}
 <style>
       html, body {
         height: 100%;
@@ -29,18 +31,38 @@ ul { list-style:none;
       }
       #sidebar-left {
         overflow-y: scroll;
+        overflow-x: scroll;
         /*background-color:#E38EFF;*/
-        
+        border-style:outset;
         height: 90%;
         width: 26%;
         float:left;
       }
      
+      #fr{
+       border-style:none;
+       width: 90%;
+       float:center;
+       border-bottom: 1px solid #d2d2d2;
+       list-style-type:none;
+      }
+      #fr2{
+       border-style:none;
+       width: 100%;
+       float:center;
+       
+       list-style-type:none;
+       
+      }
+
       #favorite {
           background-color: #ffffff;
           border: none;
           outline:none;
       }
+
+      .chcolor:hover{background:#CCEEFF;}
+
       a {
        text-decoration:none;
       }
