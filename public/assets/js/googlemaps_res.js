@@ -198,6 +198,42 @@ var infoWindows=[];
 
     });
   }
+
+function working(){
+  var working=[]
+  deleteMarkers();
+  document.getElementById('sidebar-left').innerHTML = ""; 
+  // var day=date.getDay();
+  var date=new Date();
+  var day=(date.getDay()+1);
+  var hour=(date.getHours());
+  var minute=(date.getMinutes());
+
+  $.get( "/list", function( data ) {
+    for(var i=0;i<data.length;i++){
+      var format=(data[i].營業時間)
+    .replace(/週/g,"")
+    .replace(/一/g,"1")
+    .replace(/二/g,"2")
+    .replace(/三/g,"3")
+    .replace(/四/g,"4")
+    .replace(/五/g,"5")
+    .replace(/六/g,"6")
+    .replace(/日/g,"7");
+    
+    if(format.indexOf('/')==-1){
+     if(day>=format[0]&&day<=format[2]){
+        working.push(data[i]);
+     }
+    }
+
+    }
+    show_Data(working);
+    var center = { lat: 23.099533, lng: 120.203401 };
+    map.panTo(center);
+    map.setZoom(10);
+  });
+}
   function setMapOnAll(map) {
     for (var i = 0; i < markers.length; i++) {
       markers[i].setMap(map);
