@@ -41,4 +41,7 @@ ul { list-style:none;
           border: none;
           outline:none;
       }
+      a {
+       text-decoration:none;
+      }
 </style>
