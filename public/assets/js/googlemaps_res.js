@@ -52,13 +52,15 @@ var infoWindows=[];
       create_Marker(restaurants[i].id,restaurants[i].餐飲店家名稱,restaurants[i].X坐標,restaurants[i].Y坐標,restaurants[i].店家地址,restaurants[i].店家電話,restaurants[i].營業時間,dataFavoriteHtml);
       //setMarkers(restaurants);
       
-      $('#sidebar-left' ).append(
-          '<li><a href="javascript:focusLocation(\'' + i + '\')" class="clearfix"><h3>'+restaurants[i].餐飲店家名稱+'</h3></div>'+
+     $('#sidebar-left' ).append(
+
+          '<li id="fr"><a href="javascript:focusLocation(\'' + i + '\')" class="clearfix"><div id="fr2"  class="chcolor"><h3>'+restaurants[i].餐飲店家名稱+'</h3>'+
+
           restaurants[i].店家地址+'<br/>'+
           restaurants[i].店家電話+'<br/>'+
           restaurants[i].營業時間+'<br/>'+
           '<button id="favorite" onclick="change_Favorite(\''+restaurants[i].id+'\',\''+restaurants[i].餐飲店家名稱+'\',\''+restaurants[i].店家地址+'\',\''+restaurants[i].店家電話+'\',\''+restaurants[i].營業時間+'\', $(this))">'+dataFavoriteHtml+'</button></li>'+
-          '</a></li>');
+          '</a></div></li>');
       }
     //   console.log(restaurant[2]);
   }
