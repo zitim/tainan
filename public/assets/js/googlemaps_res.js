@@ -3,7 +3,7 @@ var all=[];
 var favorite=[];
 var focusInfoWindow;
 var map;
-var user_id=81;
+var user_id=80;
 var markers = [];
 
   jQuery(document).ready(function($) {
@@ -179,49 +179,22 @@ function change_Favorite(res_id,res_name,res_address,res_phone,res_time,dataElem
   }
 }
 function show_Favorite(){
-  var favorite_Restaurant=[]
+  var show_Favorite=[]
   deleteMarkers();
   document.getElementById('sidebar-left').innerHTML = "";
       
-  // $.get( "/list", function( data ) {
-  //   var favorite_Restaurant =[];
-  //   favorite_Restaurant.push(data[0]);
-  //   console.log(favorite_Restaurant);
-  //   //console.log(data[0].favorite.indexOf(user_id));
-  //     console.log(data[0].餐飲店家名稱);
-  //     //console.log(123);
-  //     //  console.log(data[291].餐飲店家名稱);
-  //     // console.log(data[291].favorite);
-
-  //     show_Data(favorite_Restaurant);
-  //     // if (data[0].favorite.indexOf(user_id) >=0) {
-        
-  //     // }
-      
-
-  // });
-
-  
   $.get( "/list", function( data ) {
     
     for (var i = 0; i < data.length; i++) {
       if (data[i].favorite.indexOf(user_id)>=0) {
-        favorite_Restaurant.push(data[i]);
+        show_Favorite.push(data[i]);
       }
     }
-      //deleteMarkers(data)
-      // console.log(data[0].餐飲店家名稱);
-    //console.log(data[0]);
-    
-    //console.log(favorite_Restaurant);
-      //console.log(data[293].餐飲店家名稱);
-      //console.log(data[293].favorite);
-      //  console.log(data[291].餐飲店家名稱);
-      // console.log(data[291].favorite);
-    show_Data(favorite_Restaurant);
-    var center = { lat: 22.999533, lng: 120.203401 };
+
+    show_Data(show_Favorite);
+    var center = { lat: 23.099533, lng: 120.203401 };
     map.panTo(center);
-    map.setZoom(11);
+    map.setZoom(10);
 
   });
 }
