@@ -2,7 +2,7 @@ var restaurants=[];
 var all=[];
 var focusInfoWindow;
 var map;
-var user_id=80;
+var user_id=87;
 var markers = [];
 var focusList;
 var infoWindows=[];
@@ -48,7 +48,7 @@ var infoWindows=[];
           dataFavoriteHtml = '<img src="https://raw.githubusercontent.com/zitim/Tainan_restaurant/master/public/assets/img/empty-heart.png">';
       }
 
-      create_Marker(restaurants[i].id,restaurants[i].餐飲店家名稱,restaurants[i].X坐標,restaurants[i].Y坐標,restaurants[i].店家地址,restaurants[i].店家電話,restaurants[i].營業時間,dataFavoriteHtml);
+      create_Marker(i,restaurants[i].id,restaurants[i].餐飲店家名稱,restaurants[i].X坐標,restaurants[i].Y坐標,restaurants[i].店家地址,restaurants[i].店家電話,restaurants[i].營業時間,dataFavoriteHtml);
       //setMarkers(restaurants);
       
       $('#sidebar-left' ).append(
@@ -56,13 +56,13 @@ var infoWindows=[];
           restaurants[i].店家地址+'<br/>'+
           restaurants[i].店家電話+'<br/>'+
           restaurants[i].營業時間+'<br/>'+
-          '<button id="favorite" onclick="change_Favorite(\''+restaurants[i].id+'\',\''+restaurants[i].餐飲店家名稱+'\',\''+restaurants[i].店家地址+'\',\''+restaurants[i].店家電話+'\',\''+restaurants[i].營業時間+'\', $(this))">'+dataFavoriteHtml+'</button></li>'+
+          '<button id="favorite" onclick="change_Favorite(\''+restaurants[i].id+'\',\''+restaurants[i].餐飲店家名稱+'\',\''+restaurants[i].店家地址+'\',\''+restaurants[i].店家電話+'\',\''+restaurants[i].營業時間+'\', true ,$(this),\''+i+'\')">'+dataFavoriteHtml+'</button></li>'+
           '</a></div></li>');
       }
     //   console.log(restaurant[2]);
   }
 
-  function create_Marker(id,res_name,res_X,res_Y,res_address,res_phone,res_time,favorite) {
+  function create_Marker(dataCount,id,res_name,res_X,res_Y,res_address,res_phone,res_time,favorite) {
     // Adds markers to the map.
     //console.log(res_name);
     infowindow = new google.maps.InfoWindow();
@@ -106,7 +106,7 @@ var infoWindows=[];
         '<li>'+res_phone+'</li><br/>'+
         '<li>'+res_time+'</li><br/>'+
               //'<li>──────────────</li><br>'+
-        '<li><button id="favorite" onclick="change_Favorite(\''+id+'\',\''+res_name+'\',\''+res_address+'\',\''+res_phone+'\',\''+res_time+'\', $(this))">'+dataFavoriteHtml+'</button></li>'+
+        '<li><button id="favorite" onclick="change_Favorite(\''+id+'\',\''+res_name+'\',\''+res_address+'\',\''+res_phone+'\',\''+res_time+'\', false ,$(this),\''+dataCount+'\')">'+dataFavoriteHtml+'</button></li>'+
         '</ul>',
               
         maxWidth: 400
@@ -114,8 +114,7 @@ var infoWindows=[];
     
 
     marker.addListener('click', function() {
-      console.log(123);
-      console.log(focusInfoWindow);
+      
       if (focusInfoWindow != null) {
           focusInfoWindow.close();
       }
@@ -146,7 +145,7 @@ var infoWindows=[];
 
     focusInfoWindow.open(map, focusMarker);
     map.panTo(focusMarker.getPosition());
-    map.setZoom(10);
+    map.setZoom(18);
 
     focusMarker.setAnimation(google.maps.Animation.BOUNCE);
     window.setTimeout(function() {
@@ -159,8 +158,9 @@ var infoWindows=[];
   }
 
 
-  function change_Favorite(res_id,res_name,res_address,res_phone,res_time,dataElemet){
+  function change_Favorite(res_id,res_name,res_address,res_phone,res_time,islist,dataElemet,dataCount){
 
+    //未收藏
     if(dataElemet.html() == '<img src="https://raw.githubusercontent.com/zitim/Tainan_restaurant/master/public/assets/img/empty-heart.png">'){
       dataElemet.html('<img src="https://raw.githubusercontent.com/zitim/Tainan_restaurant/master/public/assets/img/heart.png">');
           
@@ -173,8 +173,26 @@ var infoWindows=[];
                   //alert('刪除失敗');
         }
       });
-          
-    }else {
+
+      var listCount = Number(dataCount) + 1;
+      if (islist) {//左邊欄位
+        var infowindow = infoWindows[dataCount];
+
+        infowindow.setContent('<div class="res_name" ><h3>'+res_name+'</h3></div>'+
+        '<ul>'+
+        '<li>'+res_address+'</li><br/>'+
+        '<li>'+res_phone+'</li><br/>'+
+        '<li>'+res_time+'</li><br/>'+
+              //'<li>──────────────</li><br>'+
+        '<li><button id="favorite" onclick="change_Favorite(\''+res_id+'\',\''+res_name+'\',\''+res_address+'\',\''+res_phone+'\',\''+res_time+'\', false ,$(this),\''+dataCount+'\')"><img src="https://raw.githubusercontent.com/zitim/Tainan_restaurant/master/public/assets/img/heart.png"></button></li>'+
+        '</ul>');
+      }else{//右邊地圖
+        console.log(listCount);
+        $('#sidebar-left > li:nth-child(' + listCount + ') button:nth-child(' + 5 + ')').html('<img src="https://raw.githubusercontent.com/zitim/Tainan_restaurant/master/public/assets/img/heart.png">');
+      }
+
+
+    }else { //已收藏
       dataElemet.html('<img src="https://raw.githubusercontent.com/zitim/Tainan_restaurant/master/public/assets/img/empty-heart.png">');
 
         $.post('/remove', {'res_id': res_id,'user_id': user_id}).success(function(data){
@@ -185,7 +203,24 @@ var infoWindows=[];
           }else{
                   //alert('刪除失敗');
           }
-      });
+        });
+
+        var listCount = Number(dataCount) + 1;
+        if (islist) {//左邊欄位
+          var infowindow = infoWindows[dataCount];
+
+          infowindow.setContent('<div class="res_name" ><h3>'+res_name+'</h3></div>'+
+          '<ul>'+
+          '<li>'+res_address+'</li><br/>'+
+          '<li>'+res_phone+'</li><br/>'+
+          '<li>'+res_time+'</li><br/>'+
+                //'<li>──────────────</li><br>'+
+          '<li><button id="favorite" onclick="change_Favorite(\''+res_id+'\',\''+res_name+'\',\''+res_address+'\',\''+res_phone+'\',\''+res_time+'\', false ,$(this),\''+dataCount+'\')"><img src="https://raw.githubusercontent.com/zitim/Tainan_restaurant/master/public/assets/img/empty-heart.png"></button></li>'+
+          '</ul>');
+        }else{//右邊地圖
+          console.log(listCount);
+          $('#sidebar-left > li:nth-child(' + listCount + ') button:nth-child(' + 5 + ')').html('<img src="https://raw.githubusercontent.com/zitim/Tainan_restaurant/master/public/assets/img/empty-heart.png">');
+        }
     }
   }
   function show_Favorite(){

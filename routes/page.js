@@ -48,7 +48,7 @@ exports.collect = function(req, res) {
 
         var res_id = req.body.res_id.replace( /[\r\n\"]/g , '' );
         var user_id = req.body.user_id.replace( /[\r\n\"]/g , '' );
-        console.log(user_id);
+        //console.log(user_id);
         //var res_favorite = req.body.res_name.replace( /[\r\n\"]/g , '' );
     //     var res_address = req.body.res_address.replace( /[\r\n\"]/g , '' );
     //     var res_phone = req.body.res_phone.replace( /[\r\n\"]/g , '' );
@@ -79,7 +79,7 @@ exports.remove = function(req, res) {
 
         var res_id = req.body.res_id.replace( /[\r\n\"]/g , '' );
         var user_id = req.body.user_id.replace( /[\r\n\"]/g , '' );
-        console.log(res_id);
+        //console.log(res_id);
         //var res_favorite = req.body.res_name.replace( /[\r\n\"]/g , '' );
     //     var res_address = req.body.res_address.replace( /[\r\n\"]/g , '' );
     //     var res_phone = req.body.res_phone.replace( /[\r\n\"]/g , '' );
