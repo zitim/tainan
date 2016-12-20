@@ -37,10 +37,9 @@ var infoWindows=[];
   //setMarkers(map);
 
   function show_Data(restaurants) {
-
+    infoWindows=[];
     //console.log(restaurants[0].favorite);
     for (var i = 0 ; i < restaurants.length; i++) {
-      //console.log(restaurants[i].favorite);
       //console.log(restaurants[i].favorite);
       //var fav = restaurants[i].favorite;
       if (restaurants[i].favorite.indexOf(user_id) >=0) {  
@@ -59,12 +58,13 @@ var infoWindows=[];
           restaurants[i].營業時間+'<br/>'+
           '<button id="favorite" onclick="change_Favorite(\''+restaurants[i].id+'\',\''+restaurants[i].餐飲店家名稱+'\',\''+restaurants[i].店家地址+'\',\''+restaurants[i].店家電話+'\',\''+restaurants[i].營業時間+'\', $(this))">'+dataFavoriteHtml+'</button></li>'+
           '</a></div></li>');
-      }s
+      }
     //   console.log(restaurant[2]);
   }
 
   function create_Marker(id,res_name,res_X,res_Y,res_address,res_phone,res_time,favorite) {
     // Adds markers to the map.
+    //console.log(res_name);
     infowindow = new google.maps.InfoWindow();
     // Marker sizes are expressed as a Size of X,Y where the origin of the image
     // (0,0) is located in the top left of the image.
@@ -86,6 +86,7 @@ var infoWindows=[];
       type: 'poly'
     };
     //console.log(res_X);
+
     var marker = new google.maps.Marker({
         position: {lat: res_Y, lng: res_X},
         map: map,
@@ -95,6 +96,7 @@ var infoWindows=[];
                     //zIndex: restaurant[3]
     });
     markers.push(marker);
+    //console.log(markers);
 
     var infowindow = new google.maps.InfoWindow({
         content: 
@@ -109,17 +111,21 @@ var infoWindows=[];
               
         maxWidth: 400
     });
-    infoWindows.push(infowindow);
+    
 
     marker.addListener('click', function() {
+      console.log(123);
+      console.log(focusInfoWindow);
       if (focusInfoWindow != null) {
           focusInfoWindow.close();
       }
       infowindow.open(map, marker);
-      focusInfoWindow = infoWindow;
+      focusInfoWindow = infowindow;
       map.zoom = 25;
       map.panTo(marker.getPosition());
     });
+    infoWindows.push(infowindow);
+    //console.log(infowindow);
     
   }
 
@@ -130,11 +136,11 @@ var infoWindows=[];
     if (focusList != null) {
         focusList.removeClass('selected');
     }
-
+    //console.log(markers);
     var focusMarker = markers[dataCount];
-    console.log(focusMarker);
+    //console.log(focusMarker);
     focusInfoWindow = infoWindows[dataCount];
-    console.log(focusInfoWindow);
+    //console.log(focusInfoWindow);
     var listCount = Number(dataCount) + 1;
     focusList = $('#list > li:nth-child(' + listCount + ')');
 
@@ -184,6 +190,7 @@ var infoWindows=[];
   }
   function show_Favorite(){
     var show_Favorite=[]
+
     deleteMarkers();
     document.getElementById('sidebar-left').innerHTML = "";
         
