@@ -78,9 +78,9 @@ var userPosition = { lat: 23.973875, lng: 120.982024 };
       
       $('#sidebar-left' ).append(
           '<li id="fr"><a href="javascript:focusLocation(\'' + i + '\')" class="clearfix"><div id="fr2"  class="chcolor"><h3>'+restaurants[i].餐飲店家名稱+'</h3>'+
-          restaurants[i].店家地址+'<br/>'+
-          restaurants[i].店家電話+'<br/>'+
-          restaurants[i].營業時間+'<br/>'+
+          '<ul><li>'+restaurants[i].店家地址+'</li><br/>'+
+          '<li>'+restaurants[i].店家電話+'</li><br/>'+
+          '<li>'+restaurants[i].營業時間+'</li><br/></ul>'+
           '<button id="favorite" onclick="change_Favorite(\''+restaurants[i].id+'\',\''+restaurants[i].餐飲店家名稱+'\',\''+restaurants[i].店家地址+'\',\''+restaurants[i].店家電話+'\',\''+restaurants[i].營業時間+'\', true ,$(this),\''+i+'\')">'+dataFavoriteHtml+'</button><button onclick="window.open(\'https://maps.google.com/?saddr=' + userPosition.lat + ',' + userPosition.lng + '&daddr=' + restaurants[i].店家地址 + '\',\'_blank\')" class="route"><img src="https://raw.githubusercontent.com/zitim/tainan/master/public/assets/img/google.png"></button></li>'+
           '</a></div></li>');
       }
@@ -122,7 +122,10 @@ var userPosition = { lat: 23.973875, lng: 120.982024 };
                     //zIndex: restaurant[3]
     });
     markers.push(marker);
-    //console.log(markers);
+    
+    var markerCluster = new MarkerClusterer(map, markers,
+      {imagePath: 'assets/img/m'});
+    //console.log(markerCluster);
 
     var infowindow = new google.maps.InfoWindow({
         content: 

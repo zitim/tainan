@@ -23,7 +23,11 @@ li { list-style:none;
       }
       #top {
         /*background-color:#CCCCFF;*/
-        height: 10%;
+        height: 5%;
+      }
+      #filter {
+        background-color:#CCCCFF;
+        height: 5%;
       }
       #map {
         height:90%;
