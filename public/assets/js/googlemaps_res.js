@@ -123,8 +123,8 @@ var userPosition = { lat: 23.973875, lng: 120.982024 };
     });
     markers.push(marker);
     
-    var markerCluster = new MarkerClusterer(map, markers,
-      {imagePath: 'assets/img/m'});
+//     var markerCluster = new MarkerClusterer(map, markers,
+//       {imagePath: 'assets/img/m'});
     //console.log(markerCluster);
 
     var infowindow = new google.maps.InfoWindow({
