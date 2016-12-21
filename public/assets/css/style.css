@@ -56,9 +56,14 @@ li { list-style:none;
       }
 
       #favorite {
-          background-color: #ffffff;
+          background-color: transparent;
           border: none;
           outline:none;
+      }
+      button {
+        background-color: transparent;
+        border: none;
+        outline:none;
       }
 
       .chcolor:hover{background:#CCEEFF;}

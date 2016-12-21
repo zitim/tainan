@@ -2,10 +2,11 @@ var restaurants=[];
 var all=[];
 var focusInfoWindow;
 var map;
-var user_id=87;
+var user_id=66;
 var markers = [];
 var focusList;
 var infoWindows=[];
+var userPosition = { lat: 23.973875, lng: 120.982024 };
 
   jQuery(document).ready(function($) {
       // $.get('/getJson').success(function(restaurants){
@@ -18,18 +19,40 @@ var infoWindows=[];
       center: {lat: 22.999533, lng: 120.203401}
     });
 
-    includeData();
-    
-    //show_Data();
+    geoFindMe();
+    //includeData();
   }
+
+  function geoFindMe() {
+    if (!navigator.geolocation) {
+        alert("很抱歉，您的瀏覽器不支援定位服務");
+        includeData();
+        return;
+    }
+
+    function success(position) {
+        var userLat = position.coords.latitude;
+        var userLng = position.coords.longitude;
+
+        userPosition = {
+            lat: userLat,
+            lng: userLng
+        };
+        includeData();
+    };
+
+    function error() {
+        //alert("已取消定位功能");
+        includeData();
+    };
+    navigator.geolocation.getCurrentPosition(success, error);
+  }
+
   function includeData() {
     $.get( "/list", function( data ) {
-      // console.log(data[0].餐飲店家名稱);
-      //a.push(data[0]);
       //console.log(data[293].餐飲店家名稱);
       //console.log(data[293].favorite);
-      //  console.log(data[291].餐飲店家名稱);
-      // console.log(data[291].favorite);
+      
       show_Data(data);
 
     });
@@ -40,6 +63,8 @@ var infoWindows=[];
     infoWindows=[];
     //console.log(restaurants[0].favorite);
     for (var i = 0 ; i < restaurants.length; i++) {
+      var dataLocation = restaurants[i].店家地址;
+      // console.log(restaurants[i].店家地址);
       //console.log(restaurants[i].favorite);
       //var fav = restaurants[i].favorite;
       if (restaurants[i].favorite.indexOf(user_id) >=0) {  
@@ -56,7 +81,7 @@ var infoWindows=[];
           restaurants[i].店家地址+'<br/>'+
           restaurants[i].店家電話+'<br/>'+
           restaurants[i].營業時間+'<br/>'+
-          '<button id="favorite" onclick="change_Favorite(\''+restaurants[i].id+'\',\''+restaurants[i].餐飲店家名稱+'\',\''+restaurants[i].店家地址+'\',\''+restaurants[i].店家電話+'\',\''+restaurants[i].營業時間+'\', true ,$(this),\''+i+'\')">'+dataFavoriteHtml+'</button></li>'+
+          '<button id="favorite" onclick="change_Favorite(\''+restaurants[i].id+'\',\''+restaurants[i].餐飲店家名稱+'\',\''+restaurants[i].店家地址+'\',\''+restaurants[i].店家電話+'\',\''+restaurants[i].營業時間+'\', true ,$(this),\''+i+'\')">'+dataFavoriteHtml+'</button><button onclick="window.open(\'https://maps.google.com/?saddr=' + userPosition.lat + ',' + userPosition.lng + '&daddr=' + restaurants[i].店家地址 + '\',\'_blank\')" class="route"><img src="https://raw.githubusercontent.com/zitim/tainan/master/public/assets/img/google.png"></button></li>'+
           '</a></div></li>');
       }
     //   console.log(restaurant[2]);
@@ -66,6 +91,7 @@ var infoWindows=[];
     // Adds markers to the map.
     //console.log(res_name);
     infowindow = new google.maps.InfoWindow();
+    //console.log(restaurants[i].店家地址);
     // Marker sizes are expressed as a Size of X,Y where the origin of the image
     // (0,0) is located in the top left of the image.
 
@@ -106,7 +132,7 @@ var infoWindows=[];
         '<li>'+res_phone+'</li><br/>'+
         '<li>'+res_time+'</li><br/>'+
               //'<li>──────────────</li><br>'+
-        '<li><button id="favorite" onclick="change_Favorite(\''+id+'\',\''+res_name+'\',\''+res_address+'\',\''+res_phone+'\',\''+res_time+'\', false ,$(this),\''+dataCount+'\')">'+dataFavoriteHtml+'</button></li>'+
+        '<li><button id="favorite" onclick="change_Favorite(\''+id+'\',\''+res_name+'\',\''+res_address+'\',\''+res_phone+'\',\''+res_time+'\', false ,$(this),\''+dataCount+'\')">'+dataFavoriteHtml+'</button><button onclick="window.open(\'https://maps.google.com/?saddr=' + userPosition.lat + ',' + userPosition.lng + '&daddr=' + res_address + '\',\'_blank\')" class="route"><img src="https://raw.githubusercontent.com/zitim/tainan/master/public/assets/img/google.png"></button></li>'+
         '</ul>',
               
         maxWidth: 400
@@ -120,7 +146,7 @@ var infoWindows=[];
       }
       infowindow.open(map, marker);
       focusInfoWindow = infowindow;
-      map.zoom = 25;
+      map.setZoom(15);
       map.panTo(marker.getPosition());
     });
     infoWindows.push(infowindow);
@@ -184,10 +210,10 @@ var infoWindows=[];
         '<li>'+res_phone+'</li><br/>'+
         '<li>'+res_time+'</li><br/>'+
               //'<li>──────────────</li><br>'+
-        '<li><button id="favorite" onclick="change_Favorite(\''+res_id+'\',\''+res_name+'\',\''+res_address+'\',\''+res_phone+'\',\''+res_time+'\', false ,$(this),\''+dataCount+'\')"><img src="https://raw.githubusercontent.com/zitim/Tainan_restaurant/master/public/assets/img/heart.png"></button></li>'+
+        '<li><button id="favorite" onclick="change_Favorite(\''+res_id+'\',\''+res_name+'\',\''+res_address+'\',\''+res_phone+'\',\''+res_time+'\', false ,$(this),\''+dataCount+'\')"><img src="https://raw.githubusercontent.com/zitim/Tainan_restaurant/master/public/assets/img/heart.png"></button><button onclick="window.open(\'https://maps.google.com/?saddr=' + userPosition.lat + ',' + userPosition.lng + '&daddr=' + res_address + '\',\'_blank\')" class="route"><img src="https://raw.githubusercontent.com/zitim/tainan/master/public/assets/img/google.png"></button></li>'+
         '</ul>');
       }else{//右邊地圖
-        console.log(listCount);
+        //console.log(listCount);
         $('#sidebar-left > li:nth-child(' + listCount + ') button:nth-child(' + 5 + ')').html('<img src="https://raw.githubusercontent.com/zitim/Tainan_restaurant/master/public/assets/img/heart.png">');
       }
 
@@ -215,10 +241,10 @@ var infoWindows=[];
           '<li>'+res_phone+'</li><br/>'+
           '<li>'+res_time+'</li><br/>'+
                 //'<li>──────────────</li><br>'+
-          '<li><button id="favorite" onclick="change_Favorite(\''+res_id+'\',\''+res_name+'\',\''+res_address+'\',\''+res_phone+'\',\''+res_time+'\', false ,$(this),\''+dataCount+'\')"><img src="https://raw.githubusercontent.com/zitim/Tainan_restaurant/master/public/assets/img/empty-heart.png"></button></li>'+
+          '<li><button id="favorite" onclick="change_Favorite(\''+res_id+'\',\''+res_name+'\',\''+res_address+'\',\''+res_phone+'\',\''+res_time+'\', false ,$(this),\''+dataCount+'\')"><img src="https://raw.githubusercontent.com/zitim/Tainan_restaurant/master/public/assets/img/empty-heart.png"></button><button onclick="window.open(\'https://maps.google.com/?saddr=' + userPosition.lat + ',' + userPosition.lng + '&daddr=' + res_address + '\',\'_blank\')" class="route"><img src="https://raw.githubusercontent.com/zitim/tainan/master/public/assets/img/google.png"></button></li>'+
           '</ul>');
         }else{//右邊地圖
-          console.log(listCount);
+          //console.log(listCount);
           $('#sidebar-left > li:nth-child(' + listCount + ') button:nth-child(' + 5 + ')').html('<img src="https://raw.githubusercontent.com/zitim/Tainan_restaurant/master/public/assets/img/empty-heart.png">');
         }
     }
