@@ -217,7 +217,7 @@ var userPosition = { lat: 23.973875, lng: 120.982024 };
         '</ul>');
       }else{//右邊地圖
         //console.log(listCount);
-        $('#sidebar-left > li:nth-child(' + listCount + ') button:nth-child(' + 5 + ')').html('<img src="https://raw.githubusercontent.com/zitim/Tainan_restaurant/master/public/assets/img/heart.png">');
+        $('#sidebar-left > li:nth-child(' + listCount + ') button:nth-child(' + 9 + ')').html('<img src="https://raw.githubusercontent.com/zitim/Tainan_restaurant/master/public/assets/img/heart.png">');
       }
 
 
@@ -248,7 +248,7 @@ var userPosition = { lat: 23.973875, lng: 120.982024 };
           '</ul>');
         }else{//右邊地圖
           //console.log(listCount);
-          $('#sidebar-left > li:nth-child(' + listCount + ') button:nth-child(' + 5 + ')').html('<img src="https://raw.githubusercontent.com/zitim/Tainan_restaurant/master/public/assets/img/empty-heart.png">');
+          $('#sidebar-left > li:nth-child(' + listCount + ') button:nth-child(' + 9 + ')').html('<img src="https://raw.githubusercontent.com/zitim/Tainan_restaurant/master/public/assets/img/empty-heart.png">');
         }
     }
   }
