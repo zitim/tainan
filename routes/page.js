@@ -13,15 +13,15 @@ exports.index = function(req, res) {
 //列出資料
 exports.list = function(req, res) {
     //res.render('pages/index');
-    mc.connect('mongodb://tainan:tainan@ds139288.mlab.com:39288/tainan', (err,db) => {
-        var collection = db.collection('info');
+    mc.connect('mongodb://zitim:999TIMTI@ds139288.mlab.com:39428/tainan2', (err,db) => {
+        var collection = db.collection('tainan');
 
          collection.find().toArray((err, result) => {
             //console.log(123);
             if(!err){
                 //console.log(123);
                 for (var i = 0; i < result.length; i++) {
-                    //console.log(result[i]);
+                    //console.log(result[i].Type);
                       //a[i]=result[i];
                       //console.log(a);
                 }
@@ -42,13 +42,13 @@ exports.list = function(req, res) {
 //收藏 
 exports.collect = function(req, res) {
     
-    mc.connect('mongodb://tainan:tainan@ds139288.mlab.com:39288/tainan', (err,db) => {
-        var collection = db.collection('info');
+    mc.connect('mongodb://zitim:999TIMTI@ds139288.mlab.com:39428/tainan2', (err,db) => {
+        var collection = db.collection('tainan');
     // //新增資料
 
         var res_id = req.body.res_id.replace( /[\r\n\"]/g , '' );
         var user_id = req.body.user_id.replace( /[\r\n\"]/g , '' );
-        console.log(user_id);
+        //console.log(user_id);
         //var res_favorite = req.body.res_name.replace( /[\r\n\"]/g , '' );
     //     var res_address = req.body.res_address.replace( /[\r\n\"]/g , '' );
     //     var res_phone = req.body.res_phone.replace( /[\r\n\"]/g , '' );
@@ -73,13 +73,13 @@ exports.collect = function(req, res) {
 //取消
 exports.remove = function(req, res) {
     
-    mc.connect('mongodb://tainan:tainan@ds139288.mlab.com:39288/tainan', (err,db) => {
-        var collection = db.collection('info');
+    mc.connect('mongodb://zitim:999TIMTI@ds139288.mlab.com:39428/tainan2', (err,db) => {
+        var collection = db.collection('tainan');
     // //新增資料
 
         var res_id = req.body.res_id.replace( /[\r\n\"]/g , '' );
         var user_id = req.body.user_id.replace( /[\r\n\"]/g , '' );
-        console.log(res_id);
+        //console.log(res_id);
         //var res_favorite = req.body.res_name.replace( /[\r\n\"]/g , '' );
     //     var res_address = req.body.res_address.replace( /[\r\n\"]/g , '' );
     //     var res_phone = req.body.res_phone.replace( /[\r\n\"]/g , '' );
