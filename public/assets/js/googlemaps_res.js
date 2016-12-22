@@ -88,7 +88,7 @@ var nowtime=(hour*60)+minute;
             var Opening=[];
 
             for(var i=0;i<data.length;i++){
-              if(day!=data[i].WorkingExcp&&data[i].WorkingWeek[1]>=day>=data[i].WorkingWeek[0]){
+              if(day!=data[i].WorkingExcp&&data[i].WorkingWeek[1]>=day&&day>=data[i].WorkingWeek[0]){
                   switch(data[i].WorkingTime.length){
                     case 2:
                       if(data[i].WorkingTime[0]<=nowtime&&nowtime<=data[i].WorkingTime[1]){
@@ -416,7 +416,7 @@ var nowtime=(hour*60)+minute;
               var Opening=[];
 
               for(var i=0;i<show_Favorite.length;i++){
-                if(day!=show_Favorite[i].WorkingExcp&&show_Favorite[i].WorkingWeek[1]>=day>=show_Favorite[i].WorkingWeek[0]){
+                if(day!=show_Favorite[i].WorkingExcp&&show_Favorite[i].WorkingWeek[1]>=day&&day>=show_Favorite[i].WorkingWeek[0]){
                     switch(show_Favorite[i].WorkingTime.length){
                       case 2:
                         if(show_Favorite[i].WorkingTime[0]<=nowtime&&nowtime<=show_Favorite[i].WorkingTime[1]){
