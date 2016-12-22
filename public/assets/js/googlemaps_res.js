@@ -7,6 +7,13 @@ var markers = [];
 var focusList;
 var infoWindows=[];
 var userPosition = { lat: 23.973875, lng: 120.982024 };
+var dt = new Date();
+  var date=new Date();
+  var day=(date.getDay());
+  var hour=(date.getHours());
+  var minute=(date.getMinutes());
+  var now=(hour*60)+minute;
+  
 
   jQuery(document).ready(function($) {
       // $.get('/getJson').success(function(restaurants){
@@ -52,8 +59,62 @@ var userPosition = { lat: 23.973875, lng: 120.982024 };
     $.get( "/list", function( data ) {
       //console.log(data[293].餐飲店家名稱);
       //console.log(data[293].favorite);
-      
       show_Data(data);
+      $('#opening_hours').change(function(){
+
+        if ( $('#opening_hours').val() == 'all' ) {
+            deleteMarkers();
+            document.getElementById('sidebar-left').innerHTML = "";
+            show_Data(data);
+        }else if($('#opening_hours').val() == 'opening'){
+            deleteMarkers();
+            document.getElementById('sidebar-left').innerHTML = "";
+            var working=[];
+
+            for(var i=0;i<data.length;i++){
+              if(day!=data[i].WorkingExcp&&day>=data[i].WorkingWeek[0]&&day<=data[i].WorkingWeek[1]){
+                 
+                 if(data[i].WorkingTime.length==2){
+                    if(data[i].WorkingTime[1]>now>data[i].WorkingTime[0]){
+                      working.push(data[i]);
+
+                    }else{
+                      console.log(1);
+                    }
+                 }else if(data[i].WorkingTime.length==4){
+                    if(data[i].WorkingTime[1]>now>data[i].WorkingTime[0]||data[i].WorkingTime[3]>now>data[i].WorkingTime[2]){
+                      working.push(data[i]);
+                      // alert(data[i].WorkingTime[1]+">="+now+">="+data[i].WorkingTime[0]);
+                    }else{
+                      console.log(2);
+                    }
+                 }else if(data[i].WorkingTime.length==6){
+                    if(data[i].WorkingTime[1]>now>data[i].WorkingTime[0]||data[i].WorkingTime[3]>now>data[i].WorkingTime[2]||data[i].WorkingTime[5]>now>data[i].WorkingTime[4]){
+                      working.push(data[i]);
+
+                    }else{
+                      console.log(3);
+                    }
+                 }else if(data[i].WorkingTime.length==8){
+                     if(data[i].WorkingTime[1]>now>data[i].WorkingTime[0]||data[i].WorkingTime[3]>now>data[i].WorkingTime[2]||data[i].WorkingTime[5]>now>data[i].WorkingTime[4]||data[i].WorkingTime[7]>now>data[i].WorkingTime[6]){
+                      working.push(data[i]);
+
+                    }else{
+                      console.log(4);
+                    }
+                 }else{
+                  console.log(5);
+                 }
+              }else{
+                console.log(6);
+              }
+            }
+
+            show_Data(working);
+        }else{
+
+        }
+      });
 
     });
   }
@@ -73,7 +134,7 @@ var userPosition = { lat: 23.973875, lng: 120.982024 };
           dataFavoriteHtml = '<img src="https://raw.githubusercontent.com/zitim/Tainan_restaurant/master/public/assets/img/empty-heart.png">';
       }
 
-      create_Marker(i,restaurants[i].id,restaurants[i].餐飲店家名稱,restaurants[i].X坐標,restaurants[i].Y坐標,restaurants[i].店家地址,restaurants[i].店家電話,restaurants[i].營業時間,dataFavoriteHtml);
+      create_Marker(i,restaurants[i].id,restaurants[i].餐飲店家名稱,restaurants[i].X坐標,restaurants[i].Y坐標,restaurants[i].店家地址,restaurants[i].店家電話,restaurants[i].營業時間,dataFavoriteHtml,restaurants[i].Type);
       //setMarkers(restaurants);
       
       $('#sidebar-left' ).append(
@@ -87,9 +148,9 @@ var userPosition = { lat: 23.973875, lng: 120.982024 };
     //   console.log(restaurant[2]);
   }
 
-  function create_Marker(dataCount,id,res_name,res_X,res_Y,res_address,res_phone,res_time,favorite) {
+  function create_Marker(dataCount,id,res_name,res_X,res_Y,res_address,res_phone,res_time,favorite,res_type) {
     // Adds markers to the map.
-    //console.log(res_name);
+    //console.log(typeof(res_type));
     infowindow = new google.maps.InfoWindow();
     //console.log(restaurants[i].店家地址);
     // Marker sizes are expressed as a Size of X,Y where the origin of the image
@@ -97,15 +158,58 @@ var userPosition = { lat: 23.973875, lng: 120.982024 };
 
     // Origins, anchor positions and coordinates of the marker increase in the X
     // direction to the right and in the Y direction down.
-    var image = {
-      url: 'https://raw.githubusercontent.com/zitim/tainan/master/public/assets/img/lollipop%20(3).png',
-      // This marker is 20 pixels wide by 32 pixels high.
-      size: new google.maps.Size(30, 32),
-      // The origin for this image is (0, 0).
-      origin: new google.maps.Point(0, 0),
-      // The anchor for this image is the base of the flagpole at (0, 32).
-      anchor: new google.maps.Point(0, 32)
-    };
+    var image
+    var dataImageUrl;
+    switch (res_type){
+      case 1:
+        image = {
+          url: 'https://raw.githubusercontent.com/zitim/tainan/master/public/assets/img/chicken.png',
+          // This marker is 20 pixels wide by 32 pixels high.
+          size: new google.maps.Size(32, 32),
+          // The origin for this image is (0, 0).
+          origin: new google.maps.Point(0, 0),
+          // The anchor for this image is the base of the flagpole at (0, 32).
+          anchor: new google.maps.Point(0, 32)
+        };
+          //dataImageUrl: 'https://raw.githubusercontent.com/zitim/tainan/master/public/assets/img/chicken.png';
+        break;
+      case 2:
+        image = {
+          url: 'https://raw.githubusercontent.com/zitim/tainan/master/public/assets/img/spaguetti.png',
+          // This marker is 20 pixels wide by 32 pixels high.
+          size: new google.maps.Size(32, 32),
+          // The origin for this image is (0, 0).
+          origin: new google.maps.Point(0, 0),
+          // The anchor for this image is the base of the flagpole at (0, 32).
+          anchor: new google.maps.Point(0, 32)
+        };
+          //dataImageUrl: 'https://raw.githubusercontent.com/zitim/tainan/master/public/assets/img/spaguetti.png';
+        break;
+      case 3:
+        image = {
+          url: 'https://raw.githubusercontent.com/zitim/tainan/master/public/assets/img/cupcake.png',
+          // This marker is 20 pixels wide by 32 pixels high.
+          size: new google.maps.Size(32, 32),
+          // The origin for this image is (0, 0).
+          origin: new google.maps.Point(0, 0),
+          // The anchor for this image is the base of the flagpole at (0, 32).
+          anchor: new google.maps.Point(0, 32)
+        };
+          //dataImageUrl: 'https://raw.githubusercontent.com/zitim/tainan/master/public/assets/img/cupcake.png';
+        break;
+      case 4:
+        image = {
+          url: 'https://raw.githubusercontent.com/zitim/tainan/master/public/assets/img/tea.png',
+          // This marker is 20 pixels wide by 32 pixels high.
+          size: new google.maps.Size(32, 32),
+          // The origin for this image is (0, 0).
+          origin: new google.maps.Point(0, 0),
+          // The anchor for this image is the base of the flagpole at (0, 32).
+          anchor: new google.maps.Point(0, 32)
+        };
+          //dataImageUrl: 'https://raw.githubusercontent.com/zitim/tainan/master/public/assets/img/tea.png';
+        break;
+    }
 
     var shape = {
       coords: [1, 1, 1, 20, 18, 20, 18, 1],
@@ -116,15 +220,15 @@ var userPosition = { lat: 23.973875, lng: 120.982024 };
     var marker = new google.maps.Marker({
         position: {lat: res_Y, lng: res_X},
         map: map,
-        icon: image,
+        icon: image
                     //shape: shape,
                     //title: restaurant[0],
                     //zIndex: restaurant[3]
     });
     markers.push(marker);
     
-//     var markerCluster = new MarkerClusterer(map, markers,
-//       {imagePath: 'assets/img/m'});
+    // var markerCluster = new MarkerClusterer(map, markers,
+    //   {imagePath: 'assets/img/m'});
     //console.log(markerCluster);
 
     var infowindow = new google.maps.InfoWindow({
@@ -149,7 +253,7 @@ var userPosition = { lat: 23.973875, lng: 120.982024 };
       }
       infowindow.open(map, marker);
       focusInfoWindow = infowindow;
-      map.setZoom(15);
+      map.setZoom(16);
       map.panTo(marker.getPosition());
     });
     infoWindows.push(infowindow);
@@ -170,7 +274,7 @@ var userPosition = { lat: 23.973875, lng: 120.982024 };
     focusInfoWindow = infoWindows[dataCount];
     //console.log(focusInfoWindow);
     var listCount = Number(dataCount) + 1;
-    focusList = $('#list > li:nth-child(' + listCount + ')');
+    focusList = $('#sidebar-left > li:nth-child(' + listCount + ')');
 
     focusInfoWindow.open(map, focusMarker);
     map.panTo(focusMarker.getPosition());
@@ -216,7 +320,7 @@ var userPosition = { lat: 23.973875, lng: 120.982024 };
         '<li><button id="favorite" onclick="change_Favorite(\''+res_id+'\',\''+res_name+'\',\''+res_address+'\',\''+res_phone+'\',\''+res_time+'\', false ,$(this),\''+dataCount+'\')"><img src="https://raw.githubusercontent.com/zitim/Tainan_restaurant/master/public/assets/img/heart.png"></button><button onclick="window.open(\'https://maps.google.com/?saddr=' + userPosition.lat + ',' + userPosition.lng + '&daddr=' + res_address + '\',\'_blank\')" class="route"><img src="https://raw.githubusercontent.com/zitim/tainan/master/public/assets/img/google.png"></button></li>'+
         '</ul>');
       }else{//右邊地圖
-        //console.log(listCount);
+        console.log(listCount);
         $('#sidebar-left > li:nth-child(' + listCount + ') button:nth-child(' + 3 + ')').html('<img src="https://raw.githubusercontent.com/zitim/Tainan_restaurant/master/public/assets/img/heart.png">');
       }
 
@@ -247,7 +351,7 @@ var userPosition = { lat: 23.973875, lng: 120.982024 };
           '<li><button id="favorite" onclick="change_Favorite(\''+res_id+'\',\''+res_name+'\',\''+res_address+'\',\''+res_phone+'\',\''+res_time+'\', false ,$(this),\''+dataCount+'\')"><img src="https://raw.githubusercontent.com/zitim/Tainan_restaurant/master/public/assets/img/empty-heart.png"></button><button onclick="window.open(\'https://maps.google.com/?saddr=' + userPosition.lat + ',' + userPosition.lng + '&daddr=' + res_address + '\',\'_blank\')" class="route"><img src="https://raw.githubusercontent.com/zitim/tainan/master/public/assets/img/google.png"></button></li>'+
           '</ul>');
         }else{//右邊地圖
-          //console.log(listCount);
+          console.log(listCount);
           $('#sidebar-left > li:nth-child(' + listCount + ') button:nth-child(' + 3 + ')').html('<img src="https://raw.githubusercontent.com/zitim/Tainan_restaurant/master/public/assets/img/empty-heart.png">');
         }
     }
@@ -266,13 +370,18 @@ var userPosition = { lat: 23.973875, lng: 120.982024 };
         }
       }
 
-      show_Data(show_Favorite);
       var center = { lat: 23.099533, lng: 120.203401 };
       map.panTo(center);
       map.setZoom(10);
+      show_Data(show_Favorite);
+      
 
     });
   }
+  function opening_hour(){
+
+  }
+
   function working(){
     var working=[]
     deleteMarkers();
