@@ -7,7 +7,6 @@ var markers = [];
 var focusList;
 var infoWindows=[];
 var userPosition = { lat: 23.973875, lng: 120.982024 };
-var dt = new Date();
 var date=new Date();
 var day=date.getDay();
 var hour=date.getHours();
@@ -74,68 +73,79 @@ var nowtime=(hour*60)+minute;
       //console.log(data[293].餐飲店家名稱);
       //console.log(data[293].favorite);
       show_Data(data);
+    });
       $('#opening_hours1').change(function(){
 
         if ( $('#opening_hours1').val() == 'all' ) {
-            //console.log(12);
             deleteMarkers();
             document.getElementById('sidebar-left').innerHTML = "";
-            show_Data(data);
+            $.get( "/list", function( data ) {
+              //console.log(data[293].餐飲店家名稱);
+              //console.log(data[293].favorite);
+              show_Data(data);
+            });
+
         }else if($('#opening_hours1').val() == 'opening'){
              //console.log(34);
             deleteMarkers();
             document.getElementById('sidebar-left').innerHTML = "";
             var Opening=[];
+            data=[];
 
-            for(var i=0;i<data.length;i++){
-              if(day!=data[i].WorkingExcp&&data[i].WorkingWeek[1]>=day&&day>=data[i].WorkingWeek[0]){
-                  switch(data[i].WorkingTime.length){
-                    case 2:
-                      if(data[i].WorkingTime[0]<=nowtime&&nowtime<=data[i].WorkingTime[1]){
-                       Opening.push(data[i]);
-                      }
-                      break;
+            $.get( "/list", function( data ) {
+              //console.log(data[293].餐飲店家名稱);
+              //console.log(data[293].favorite);
+              
+              for(var i=0;i<data.length;i++){
+                if(day!=data[i].WorkingExcp&&data[i].WorkingWeek[1]>=day&&day>=data[i].WorkingWeek[0]){
+                    switch(data[i].WorkingTime.length){
+                      case 2:
+                        if(data[i].WorkingTime[0]<=nowtime&&nowtime<=data[i].WorkingTime[1]){
+                         Opening.push(data[i]);
+                        }
+                        break;
 
-                    case 4:
-                      if(data[i].WorkingTime[0]<=nowtime&&nowtime<=data[i].WorkingTime[1]){
-                        Opening.push(data[i]);
-                      }else if(data[i].WorkingTime[2]<=nowtime&&nowtime<=data[i].WorkingTime[3]){
-                        Opening.push(data[i]);
-                      }
-                      break;
+                      case 4:
+                        if(data[i].WorkingTime[0]<=nowtime&&nowtime<=data[i].WorkingTime[1]){
+                          Opening.push(data[i]);
+                        }else if(data[i].WorkingTime[2]<=nowtime&&nowtime<=data[i].WorkingTime[3]){
+                          Opening.push(data[i]);
+                        }
+                        break;
 
-                    case 6:
-                       if(data[i].WorkingTime[0]<=nowtime&&nowtime<=data[i].WorkingTime[1]){
-                        Opening.push(data[i]);
-                      }else if(data[i].WorkingTime[2]<=nowtime&&nowtime<=data[i].WorkingTime[3]){
-                        Opening.push(data[i]);
-                      }else if(data[i].WorkingTime[4]<=nowtime&&nowtime<=data[i].WorkingTime[5]){
-                        Opening.push(data[i]);
-                      }
-                      break;
+                      case 6:
+                         if(data[i].WorkingTime[0]<=nowtime&&nowtime<=data[i].WorkingTime[1]){
+                          Opening.push(data[i]);
+                        }else if(data[i].WorkingTime[2]<=nowtime&&nowtime<=data[i].WorkingTime[3]){
+                          Opening.push(data[i]);
+                        }else if(data[i].WorkingTime[4]<=nowtime&&nowtime<=data[i].WorkingTime[5]){
+                          Opening.push(data[i]);
+                        }
+                        break;
 
-                    case 8:
-                      if(data[i].WorkingTime[0]<=nowtime&&nowtime<=data[i].WorkingTime[1]){
-                        Opening.push(data[i]);
-                      }else if(data[i].WorkingTime[2]<=nowtime&&nowtime<=data[i].WorkingTime[3]){
-                        Opening.push(data[i]);
-                      }else if(data[i].WorkingTime[4]<=nowtime&&nowtime<=data[i].WorkingTime[5]){
-                        Opening.push(data[i]);
-                      }else if(data[i].WorkingTime[6]<=nowtime&&nowtime<=data[i].WorkingTime[7]){
-                        Opening.push(data[i]);
-                      break;
-                      }
-                  }
+                      case 8:
+                        if(data[i].WorkingTime[0]<=nowtime&&nowtime<=data[i].WorkingTime[1]){
+                          Opening.push(data[i]);
+                        }else if(data[i].WorkingTime[2]<=nowtime&&nowtime<=data[i].WorkingTime[3]){
+                          Opening.push(data[i]);
+                        }else if(data[i].WorkingTime[4]<=nowtime&&nowtime<=data[i].WorkingTime[5]){
+                          Opening.push(data[i]);
+                        }else if(data[i].WorkingTime[6]<=nowtime&&nowtime<=data[i].WorkingTime[7]){
+                          Opening.push(data[i]);
+                        break;
+                        }
+                    }
+                }
               }
-            }
+              show_Data(Opening);
+            });
 
-            show_Data(Opening);
+            
         }else{
 
         }
       });
 
-    });
   }
   //setMarkers(map);
 
@@ -195,38 +205,26 @@ var nowtime=(hour*60)+minute;
       case 2:
         image = {
           url: 'https://raw.githubusercontent.com/zitim/tainan/master/public/assets/img/spaguetti.png',
-          // This marker is 20 pixels wide by 32 pixels high.
           size: new google.maps.Size(32, 32),
-          // The origin for this image is (0, 0).
           origin: new google.maps.Point(0, 0),
-          // The anchor for this image is the base of the flagpole at (0, 32).
           anchor: new google.maps.Point(0, 32)
         };
-          //dataImageUrl: 'https://raw.githubusercontent.com/zitim/tainan/master/public/assets/img/spaguetti.png';
         break;
       case 3:
         image = {
           url: 'https://raw.githubusercontent.com/zitim/tainan/master/public/assets/img/cupcake.png',
-          // This marker is 20 pixels wide by 32 pixels high.
           size: new google.maps.Size(32, 32),
-          // The origin for this image is (0, 0).
           origin: new google.maps.Point(0, 0),
-          // The anchor for this image is the base of the flagpole at (0, 32).
           anchor: new google.maps.Point(0, 32)
         };
-          //dataImageUrl: 'https://raw.githubusercontent.com/zitim/tainan/master/public/assets/img/cupcake.png';
         break;
       case 4:
         image = {
           url: 'https://raw.githubusercontent.com/zitim/tainan/master/public/assets/img/tea.png',
-          // This marker is 20 pixels wide by 32 pixels high.
           size: new google.maps.Size(32, 32),
-          // The origin for this image is (0, 0).
           origin: new google.maps.Point(0, 0),
-          // The anchor for this image is the base of the flagpole at (0, 32).
           anchor: new google.maps.Point(0, 32)
         };
-          //dataImageUrl: 'https://raw.githubusercontent.com/zitim/tainan/master/public/assets/img/tea.png';
         break;
     }
 
@@ -234,15 +232,14 @@ var nowtime=(hour*60)+minute;
       coords: [1, 1, 1, 20, 18, 20, 18, 1],
       type: 'poly'
     };
-    //console.log(res_X);
 
     var marker = new google.maps.Marker({
         position: {lat: res_Y, lng: res_X},
         map: map,
         icon: image
-                    //shape: shape,
-                    //title: restaurant[0],
-                    //zIndex: restaurant[3]
+        //shape: shape,
+        //title: restaurant[0],
+        //zIndex: restaurant[3]
     });
     markers.push(marker);
     
@@ -402,69 +399,95 @@ var nowtime=(hour*60)+minute;
       map.setZoom(10);
       show_Data(show_Favorite);
 
+    });
+
       $('#opening_hours2').change(function(){
 
           if ( $('#opening_hours2').val() == 'all' ) {
-              console.log(12);
               deleteMarkers();
               document.getElementById('sidebar-left').innerHTML = "";
-              show_Data(show_Favorite);
+              show_Favorite=[];
+              $.get( "/list", function( data ) {
+      
+                for (var i = 0; i < data.length; i++) {
+                  if (data[i].favorite.indexOf(user_id)>=0) {
+                    show_Favorite.push(data[i]);
+                  }
+                } 
+                show_Data(show_Favorite);
+
+              });
+              //show_Data(show_Favorite);
           }else if($('#opening_hours2').val() == 'opening'){
               deleteMarkers();
               document.getElementById('sidebar-left').innerHTML = "";
 
               var Opening=[];
+              show_Favorite=[];
+              $.get( "/list", function( data ) {
+      
+                for (var i = 0; i < data.length; i++) {
+                  if (data[i].favorite.indexOf(user_id)>=0) {
+                    show_Favorite.push(data[i]);
+                  }
+                } 
+                for(var i=0;i<show_Favorite.length;i++){
+                  console.log(show_Favorite.length);
+                  if(day!=show_Favorite[i].WorkingExcp&&show_Favorite[i].WorkingWeek[1]>=day&&day>=show_Favorite[i].WorkingWeek[0]){
+                      switch(show_Favorite[i].WorkingTime.length){
+                        case 2:
+                          if(show_Favorite[i].WorkingTime[0]<=nowtime&&nowtime<=show_Favorite[i].WorkingTime[1]){
+                           Opening.push(show_Favorite[i]);
+                          }
+                          break;
 
-              for(var i=0;i<show_Favorite.length;i++){
-                if(day!=show_Favorite[i].WorkingExcp&&show_Favorite[i].WorkingWeek[1]>=day&&day>=show_Favorite[i].WorkingWeek[0]){
-                    switch(show_Favorite[i].WorkingTime.length){
-                      case 2:
-                        if(show_Favorite[i].WorkingTime[0]<=nowtime&&nowtime<=show_Favorite[i].WorkingTime[1]){
-                         Opening.push(show_Favorite[i]);
-                        }
-                        break;
+                        case 4:
+                          if(show_Favorite[i].WorkingTime[0]<=nowtime&&nowtime<=show_Favorite[i].WorkingTime[1]){
+                            Opening.push(show_Favorite[i]);
+                          }else if(show_Favorite[i].WorkingTime[2]<=nowtime&&nowtime<=show_Favorite[i].WorkingTime[3]){
+                            Opening.push(show_Favorite[i]);
+                          }
+                          break;
 
-                      case 4:
-                        if(show_Favorite[i].WorkingTime[0]<=nowtime&&nowtime<=show_Favorite[i].WorkingTime[1]){
-                          Opening.push(show_Favorite[i]);
-                        }else if(show_Favorite[i].WorkingTime[2]<=nowtime&&nowtime<=show_Favorite[i].WorkingTime[3]){
-                          Opening.push(show_Favorite[i]);
-                        }
-                        break;
+                        case 6:
+                           if(show_Favorite[i].WorkingTime[0]<=nowtime&&nowtime<=show_Favorite[i].WorkingTime[1]){
+                            Opening.push(show_Favorite[i]);
+                          }else if(show_Favorite[i].WorkingTime[2]<=nowtime&&nowtime<=show_Favorite[i].WorkingTime[3]){
+                            Opening.push(show_Favorite[i]);
+                          }else if(show_Favorite[i].WorkingTime[4]<=nowtime&&nowtime<=show_Favorite[i].WorkingTime[5]){
+                            Opening.push(show_Favorite[i]);
+                          }
+                          break;
 
-                      case 6:
-                         if(show_Favorite[i].WorkingTime[0]<=nowtime&&nowtime<=show_Favorite[i].WorkingTime[1]){
-                          Opening.push(show_Favorite[i]);
-                        }else if(show_Favorite[i].WorkingTime[2]<=nowtime&&nowtime<=show_Favorite[i].WorkingTime[3]){
-                          Opening.push(show_Favorite[i]);
-                        }else if(show_Favorite[i].WorkingTime[4]<=nowtime&&nowtime<=show_Favorite[i].WorkingTime[5]){
-                          Opening.push(show_Favorite[i]);
-                        }
-                        break;
-
-                      case 8:
-                        if(show_Favorite[i].WorkingTime[0]<=nowtime&&nowtime<=show_Favorite[i].WorkingTime[1]){
-                          Opening.push(show_Favorite[i]);
-                        }else if(show_Favorite[i].WorkingTime[2]<=nowtime&&nowtime<=show_Favorite[i].WorkingTime[3]){
-                          Opening.push(show_Favorite[i]);
-                        }else if(show_Favorite[i].WorkingTime[4]<=nowtime&&nowtime<=show_Favorite[i].WorkingTime[5]){
-                          Opening.push(show_Favorite[i]);
-                        }else if(show_Favorite[i].WorkingTime[6]<=nowtime&&nowtime<=show_Favorite[i].WorkingTime[7]){
-                          Opening.push(show_Favorite[i]);
-                        break;
-                        }
-                    }
+                        case 8:
+                          if(show_Favorite[i].WorkingTime[0]<=nowtime&&nowtime<=show_Favorite[i].WorkingTime[1]){
+                            Opening.push(show_Favorite[i]);
+                          }else if(show_Favorite[i].WorkingTime[2]<=nowtime&&nowtime<=show_Favorite[i].WorkingTime[3]){
+                            Opening.push(show_Favorite[i]);
+                          }else if(show_Favorite[i].WorkingTime[4]<=nowtime&&nowtime<=show_Favorite[i].WorkingTime[5]){
+                            Opening.push(show_Favorite[i]);
+                          }else if(show_Favorite[i].WorkingTime[6]<=nowtime&&nowtime<=show_Favorite[i].WorkingTime[7]){
+                            Opening.push(show_Favorite[i]);
+                          break;
+                          }
+                      }
+                     
+                  }
                 }
-              }
+                show_Data(Opening); 
 
-              show_Data(Opening);
+              });
+
+              
+
+              
           }else{
 
           }
 
       });
       
-    });
+    
 
   }
   
