@@ -34,8 +34,8 @@ li { list-style:none;
         height: 5%;
       }
       #filter {
-        background-color: #FFAF60;
-        height: 5%;
+        background-color: #FF7744;
+        height: 30px;
         width:100%;
         font-family:Microsoft JhengHei;
         color:#FFFFFF;
@@ -91,6 +91,8 @@ li { list-style:none;
         font-family:Microsoft JhengHei;
         font-size:15px;
         float: right;
+        width: 100px;
+        border-color:#FF7744;
 
        }
       
@@ -174,3 +176,4 @@ li { list-style:none;
         outline:none;
       }
 </style>
+
