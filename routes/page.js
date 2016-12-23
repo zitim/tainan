@@ -8,7 +8,18 @@ var b=[];
 
 
 exports.index = function(req, res) {
-    res.render('pages/index');
+    if(req.session.check=='yes'){
+         res.render('pages/index', {
+            
+            name:req.session.name
+        });
+    }else{
+
+        res.render('pages/login', {
+            ogheadTitle: '首頁內容',
+            
+        });
+    }
 };
 //列出資料
 exports.list = function(req, res) {
@@ -147,15 +158,18 @@ exports.edit = function(req, res) {
     // });
 
 }
-
+exports.delete_session = function(req, res) {
+    req.session.check='no'; 
+    res.send(req.session.check);
+};
 exports.postAjax = function(req, res) {
     // ajax
-    if (req.body.password == 1234) {
-        res.send('success');
-    } else(
-        res.send('error')
-    );
+    req.session.name=req.body.password; 
+    req.session.check='yes'; 
+    
+    res.send(req.session.name);
 };
+
 
 //get取得資料
 exports.getAjax = function(req, res) {
