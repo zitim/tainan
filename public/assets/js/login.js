@@ -70,7 +70,7 @@
      });
       console.log('Successful login for: ' + response.name);
       document.getElementById('status').innerHTML =
-       '<input type="button" id="btnLogout" value="Logout" onclick="Logout();">'
+       ''
     });
     setTimeout(function () {
     window.location.reload(1);
