@@ -127,16 +127,21 @@ li { list-style:none;
       }
 
         #btnLogout{
-            float: right;
-            background: 	#3b5998;
-           
-          }
+          -webkit-border-radius: 7;
+          -moz-border-radius: 7;
+          border-radius: 7px;
+          font-family: Arial;
+          color: #ffffff;
+          font-size: 13px;
+          background: #3b5998;
+          padding: 10px 20px 10px 20px;
+          text-decoration: none;
+        }
 
-          #btnLogout:hover {
-            background: 	#8b9dc3;
-            
-          }
-        
+    #btnLogout:hover {
+        background: #6d84b4;
+        text-decoration: none;
+      }
         
 
 
