@@ -127,12 +127,13 @@ li { list-style:none;
       }
 
         #btnLogout{
+          float:right;
           -webkit-border-radius: 7;
           -moz-border-radius: 7;
-          border-radius: 7px;
+          border-radius:9px;
           font-family: Arial;
           color: #ffffff;
-          font-size: 13px;
+          font-size: 12px;
           background: #3b5998;
           padding: 10px 20px 10px 20px;
           text-decoration: none;
