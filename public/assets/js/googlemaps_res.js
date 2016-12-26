@@ -192,7 +192,7 @@ var nowtime=(hour*60)+minute;
     switch (res_type){
       case 1:
         image = {
-          url: 'https://raw.githubusercontent.com/zitim/tainan/master/public/assets/img/chicken.png',
+          url: 'https://raw.githubusercontent.com/zitim/tainan/master/public/assets/img/turkey (1).png',
           // This marker is 20 pixels wide by 32 pixels high.
           size: new google.maps.Size(32, 32),
           // The origin for this image is (0, 0).
@@ -204,7 +204,7 @@ var nowtime=(hour*60)+minute;
         break;
       case 2:
         image = {
-          url: 'https://raw.githubusercontent.com/zitim/tainan/master/public/assets/img/spaguetti.png',
+          url: 'https://raw.githubusercontent.com/zitim/tainan/master/public/assets/img/fries.png',
           size: new google.maps.Size(32, 32),
           origin: new google.maps.Point(0, 0),
           anchor: new google.maps.Point(0, 32)
@@ -212,7 +212,7 @@ var nowtime=(hour*60)+minute;
         break;
       case 3:
         image = {
-          url: 'https://raw.githubusercontent.com/zitim/tainan/master/public/assets/img/cupcake.png',
+          url: 'https://raw.githubusercontent.com/zitim/tainan/master/public/assets/img/ice-cream.png',
           size: new google.maps.Size(32, 32),
           origin: new google.maps.Point(0, 0),
           anchor: new google.maps.Point(0, 32)
@@ -220,7 +220,7 @@ var nowtime=(hour*60)+minute;
         break;
       case 4:
         image = {
-          url: 'https://raw.githubusercontent.com/zitim/tainan/master/public/assets/img/tea.png',
+          url: 'https://raw.githubusercontent.com/zitim/tainan/master/public/assets/img/coffee.png',
           size: new google.maps.Size(32, 32),
           origin: new google.maps.Point(0, 0),
           anchor: new google.maps.Point(0, 32)
