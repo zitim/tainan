@@ -149,7 +149,8 @@ li { list-style:none;
         vertical-align: middle;
         float:center;
         text-align: center;
-        
+        margin-left: auto;
+        margin-right: auto;
       }
       #status{
         text-align: right;
