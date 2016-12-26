@@ -146,12 +146,15 @@ li { list-style:none;
       }
 
       #fblogin{
-        float:right;
+        vertical-align: middle;
+        float:center;
         text-align: right;
+        
       }
       #status{
         text-align: right;
       }
+     
 
 
 
