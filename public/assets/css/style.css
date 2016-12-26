@@ -146,11 +146,12 @@ li { list-style:none;
       }
 
       #fblogin{
-        vertical-align: middle;
+/*         vertical-align: middle;
         float:center;
         text-align: center;
         margin-left: auto;
-        margin-right: auto;
+        margin-right: auto; */
+        margin: auto;
       }
       #status{
         text-align: right;
