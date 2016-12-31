@@ -606,7 +606,7 @@ var nowtime=(hour*60)+minute;
             document.getElementById('sidebar-left').innerHTML = "";
 
             $("#resraurant_type3").change(function(){
-
+              show_Favorite=[];
               $( "#resraurant_type3 option:selected" ).filter(function() {
                 switch($('#resraurant_type3').val()){
                   case 'all':
