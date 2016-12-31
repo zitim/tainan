@@ -51,6 +51,29 @@
   }
   a {
     text-decoration:none;
+    color:#ffffff;
+  }
+  a:link{
+  //設定還沒有瀏覽過的連結
+  text-decoration:none;
+  background-color:transparent;
+  }
+  a:visited {
+  //設定已經瀏覽過的連結
+  color:#ffffff;
+  background-color:transparent;
+  }
+  a:hover {
+  //設定滑鼠移經的連結
+  text-decoration:underline;
+  background-color:transparent;
+  /*color:white;*/
+  }
+  a:active {
+  //設定正在點選的連結
+  text-decoration:none;
+  /*background-color:white;*/
+  color:transparent;
   }
   button {
     background-color: transparent;
@@ -271,6 +294,28 @@
   }
   a {
     text-decoration:none;
+  }
+  :link{
+  //設定還沒有瀏覽過的連結
+  text-decoration:none;
+  background-color:transparent;
+  }
+  a:visited {
+  //設定已經瀏覽過的連結
+  color:#ffffff;
+  background-color:transparent;
+  }
+  a:hover {
+  //設定滑鼠移經的連結
+  text-decoration:underline;
+  background-color:transparent;
+  /*color:white;*/
+  }
+  a:active {
+  //設定正在點選的連結
+  text-decoration:none;
+  /*background-color:white;*/
+  color:transparent;
   }
   button {
     background-color: transparent;
@@ -509,6 +554,28 @@
   a {
     text-decoration:none;
   }
+  :link{
+  //設定還沒有瀏覽過的連結
+  text-decoration:none;
+  background-color:transparent;
+  }
+  a:visited {
+  //設定已經瀏覽過的連結
+  color:#ffffff;
+  background-color:transparent;
+  }
+  a:hover {
+  //設定滑鼠移經的連結
+  text-decoration:underline;
+  background-color:transparent;
+  /*color:white;*/
+  }
+  a:active {
+  //設定正在點選的連結
+  text-decoration:none;
+  /*background-color:white;*/
+  color:transparent;
+  }
   button {
     background-color: transparent;
     border: none;
@@ -746,6 +813,28 @@
   }
   a {
     text-decoration:none;
+  }
+  :link{
+  //設定還沒有瀏覽過的連結
+  text-decoration:none;
+  background-color:transparent;
+  }
+  a:visited {
+  //設定已經瀏覽過的連結
+  color:#ffffff;
+  background-color:transparent;
+  }
+  a:hover {
+  //設定滑鼠移經的連結
+  text-decoration:underline;
+  background-color:transparent;
+  /*color:white;*/
+  }
+  a:active {
+  //設定正在點選的連結
+  text-decoration:none;
+  /*background-color:white;*/
+  color:transparent;
   }
   button {
     background-color: transparent;
