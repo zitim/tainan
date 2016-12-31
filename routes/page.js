@@ -8,7 +8,18 @@ var b=[];
 
 
 exports.index = function(req, res) {
-    res.render('pages/index');
+    if(req.session.check=='yes'){
+         res.render('pages/index', {
+            
+            name:req.session.name
+        });
+    }else{
+
+        res.render('pages/login', {
+            ogheadTitle: '首頁內容',
+            
+        });
+    }
 };
 //列出資料
 exports.list = function(req, res) {
