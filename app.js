@@ -1,6 +1,5 @@
 // node 預設模組
 var path = require('path');
-var express = require('express');
 
 // NPM 模組
 var app = require('express')();
@@ -9,7 +8,6 @@ var static = require('serve-static');
 var bodyParser = require('body-parser');
 var favicon = require('serve-favicon');    
 var session = require('express-session');
-
 // router設定
 var page = require('./routes/page');
 
@@ -21,7 +19,6 @@ app.use(bodyParser.urlencoded({ extended: true}));
 app.use(session({
   secret: 'recommand 128 bytes random string', // 建议使用 128 个字符的随机字符串
 }));
-
 // 版型設定
 app.use(partials());
 app.set('views', path.join(__dirname, 'views'));
@@ -43,10 +40,7 @@ app.post('/postAjax',page.postAjax);
 app.get('/getAjax',page.getAjax);
 app.get('/getJson', page.getJson);
 app.get('/list',page.list);
-app.use("/public/assets/js/markerclusterer.js", express.static(__dirname + '/public/assets/js/markerclusterer.js'));
-app.use("/public/assets/img", express.static(__dirname + '/public/assets/img'));
 app.post('/delete_session',page.delete_session);
-
 //偵測3000 port
 
 app.listen(app.get('port'), function() {
