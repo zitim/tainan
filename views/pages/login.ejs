@@ -3,7 +3,7 @@
 <fb:login-/button>  -->
 <fb:login-button scope="public_profile,email" id="fblogin" data-max-rows="5" data-size="xlarge" onlogin="checkLoginState();">
 </fb:login-button>
-<a href="#" onclick="fb_login();">qwe</a>
+
 
 <div id="status">
 </div>
@@ -11,17 +11,6 @@
   jQuery(document).ready(function($) {
    
   });
- function fb_login(){
-    FB.login(function(response) {
 
-        if (response.status === 'connected') {
-       testAPI();
-        } else {
-      
-        }
-    }, {
-       scope="public_profile,email"
-    });
-}
 </script>
 <script type="text/javascript" src="assets/js/login.js"></script>
