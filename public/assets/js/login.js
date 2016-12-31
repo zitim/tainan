@@ -67,8 +67,7 @@
         console.log(data);
      });
       console.log('Successful login for: ' + response.name);
-      document.getElementById('status').innerHTML =
-       ''
+      
     });
     setTimeout(function () {
     window.location.reload(1);
