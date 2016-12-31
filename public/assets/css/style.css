@@ -22,7 +22,7 @@
     border-color: #BEBEBE ;
   }
   ul{ 
-    /*list-style:none; */
+    list-style:none;
      border-top-style:dashed;
      border-bottom-style:dashed;
      border-width:1px;
