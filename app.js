@@ -1,12 +1,14 @@
 // node 預設模組
 var path = require('path');
+var express = require('express');
 
 // NPM 模組
 var app = require('express')();
 var partials = require('express-partials');
 var static = require('serve-static');
 var bodyParser = require('body-parser');
-var favicon = require('serve-favicon');    
+var favicon = require('serve-favicon'); 
+
 
 // router設定
 var page = require('./routes/page');
@@ -16,6 +18,7 @@ app.set('port', (process.env.PORT || 3001));
 // 讓回傳的值可以解析 json與 urlencoded
 app.use(bodyParser.json()); 
 app.use(bodyParser.urlencoded({ extended: true}));
+
 
 // 版型設定
 app.use(partials());
@@ -38,6 +41,10 @@ app.post('/postAjax',page.postAjax);
 app.get('/getAjax',page.getAjax);
 app.get('/getJson', page.getJson);
 app.get('/list',page.list);
+app.use("/public/assets/js/markerclusterer.js", express.static(__dirname + '/public/assets/js/markerclusterer.js'));
+app.use("/public/assets/img", express.static(__dirname + '/public/assets/img'));
+
+//偵測3000 port
 
 //偵測3000 port
 

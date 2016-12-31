@@ -16,6 +16,7 @@ var nowtime=(hour*60)+minute;
 //console.log(nowtime);
   
 
+
   jQuery(document).ready(function($) {
       // $.get('/getJson').success(function(restaurants){
       //   //console.log(restaurants)
@@ -26,6 +27,7 @@ var nowtime=(hour*60)+minute;
       zoom: 12,
       center: {lat: 22.999533, lng: 120.203401}
     });
+
 
     $('#filter').append();
 
@@ -67,6 +69,7 @@ var nowtime=(hour*60)+minute;
       '<option value="opening" selected="selected">現在營業</option>'+
       '</select>'
     );
+
     includeData();
   }
 
@@ -85,7 +88,7 @@ var nowtime=(hour*60)+minute;
                 '<option value=11 >主食</option>'+
                 '<option value=12 >小吃</option>'+
                 '<option value=13 >甜食</option>'+
-                '<option value=14 >液體</option>'+
+                '<option value=14 >咖啡</option>'+
                 '</select>'
               );
 
@@ -180,7 +183,7 @@ var nowtime=(hour*60)+minute;
                 '<option value=21 >主食</option>'+
                 '<option value=22 >小吃</option>'+
                 '<option value=23 >甜食</option>'+
-                '<option value=24 >液體</option>'+
+                '<option value=24 >咖啡</option>'+
                 '</select>'
               );
               deleteMarkers();
@@ -346,7 +349,7 @@ var nowtime=(hour*60)+minute;
       
       $('#sidebar-left' ).append(
           '<li id="fr"><a href="javascript:focusLocation(\'' + i + '\')" class="clearfix"><div id="fr2"  class="chcolor"><h3>'+restaurants[i].餐飲店家名稱+'</h3>'+
-          '<ul><li>'+restaurants[i].店家地址+'</li><br/>'+
+          '<ul><li id="addresicon">'+restaurants[i].店家地址+'</li><br/>'+
           '<li>'+restaurants[i].店家電話+'</li><br/>'+
           '<li>'+restaurants[i].營業時間+'</li><br/></ul>'+
           '<button id="favorite" onclick="change_Favorite(\''+restaurants[i].id+'\',\''+restaurants[i].餐飲店家名稱+'\',\''+restaurants[i].店家地址+'\',\''+restaurants[i].店家電話+'\',\''+restaurants[i].營業時間+'\', true ,$(this),\''+i+'\')">'+dataFavoriteHtml+'</button><button onclick="window.open(\'https://maps.google.com/?saddr=' + userPosition.lat + ',' + userPosition.lng + '&daddr=' + restaurants[i].店家地址 + '\',\'_blank\')" class="route"><img src="https://raw.githubusercontent.com/zitim/tainan/master/public/assets/img/google.png"></button></li>'+
@@ -390,7 +393,7 @@ var nowtime=(hour*60)+minute;
         break;
       case 3:
         image = {
-          url: 'https://raw.githubusercontent.com/zitim/tainan/master/public/assets/img/ice-cream.png',
+          url: 'https://raw.githubusercontent.com/zitim/tainan/master/public/assets/img/doughnut.png',
           size: new google.maps.Size(32, 32),
           origin: new google.maps.Point(0, 0),
           anchor: new google.maps.Point(0, 32)
@@ -398,7 +401,7 @@ var nowtime=(hour*60)+minute;
         break;
       case 4:
         image = {
-          url: 'https://raw.githubusercontent.com/zitim/tainan/master/public/assets/img/coffee.png',
+          url: 'https://raw.githubusercontent.com/zitim/tainan/master/public/assets/img/coffee2.png',
           size: new google.maps.Size(32, 32),
           origin: new google.maps.Point(0, 0),
           anchor: new google.maps.Point(0, 32)
@@ -410,6 +413,7 @@ var nowtime=(hour*60)+minute;
       coords: [1, 1, 1, 20, 18, 20, 18, 1],
       type: 'poly'
     };
+
 
     var marker = new google.maps.Marker({
         position: {lat: res_Y, lng: res_X},
@@ -424,6 +428,18 @@ var nowtime=(hour*60)+minute;
     // var markerCluster = new MarkerClusterer(map, markers,
     //   {imagePath: 'assets/img/m'});
     //console.log(markerCluster);
+
+    // var markerCluster = new MarkerClusterer(map, markers,
+    //         {imagePath: '/public/assets/img'});
+      
+
+    // var locations = [
+    //     {lat: res_Y, lng: res_X}
+        
+    //   ];
+
+    var s1 ='<script src="/public/assets/js/markerclusterer.js"></script>';
+    var s2 ='<script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyD0SEsueJfTm1q5k7bnAkt1OLTFv1oO2C0&signed_in=true&callback=initMap"></script>'
 
     var infowindow = new google.maps.InfoWindow({
         content: 
@@ -483,6 +499,7 @@ var nowtime=(hour*60)+minute;
 
     $('.filter').hide();
   }
+
 
 
   function change_Favorite(res_id,res_name,res_address,res_phone,res_time,islist,dataElemet,dataCount){
@@ -567,6 +584,7 @@ var nowtime=(hour*60)+minute;
     deleteMarkers();
     document.getElementById('sidebar-left').innerHTML = "";
 
+
     $("#opening_hours2").change(function(){
 
       $( "#opening_hours2 option:selected" ).filter(function() {
@@ -581,7 +599,7 @@ var nowtime=(hour*60)+minute;
               '<option value=11 >主食</option>'+
               '<option value=12 >小吃</option>'+
               '<option value=13 >甜食</option>'+
-              '<option value=14 >液體</option>'+
+              '<option value=14 >咖啡</option>'+
               '</select>'
             );
             deleteMarkers();
@@ -705,7 +723,7 @@ var nowtime=(hour*60)+minute;
               '<option value=21 >主食</option>'+
               '<option value=22 >小吃</option>'+
               '<option value=23 >甜食</option>'+
-              '<option value=24 >液體</option>'+
+              '<option value=24 >咖啡</option>'+
               '</select>'
             );
 
@@ -890,6 +908,7 @@ var nowtime=(hour*60)+minute;
     }
   }
 
+
   function clearMarkers() {
     setMapOnAll(null);
   }
@@ -899,4 +918,3 @@ var nowtime=(hour*60)+minute;
      clearMarkers();
      markers = [];
   }
-
