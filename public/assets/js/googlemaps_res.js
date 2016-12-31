@@ -88,7 +88,7 @@ var nowtime=(hour*60)+minute;
                 '<option value=11 >主食</option>'+
                 '<option value=12 >小吃</option>'+
                 '<option value=13 >甜食</option>'+
-                '<option value=14 >液體</option>'+
+                '<option value=14 >咖啡</option>'+
                 '</select>'
               );
 
@@ -183,7 +183,7 @@ var nowtime=(hour*60)+minute;
                 '<option value=21 >主食</option>'+
                 '<option value=22 >小吃</option>'+
                 '<option value=23 >甜食</option>'+
-                '<option value=24 >液體</option>'+
+                '<option value=24 >咖啡</option>'+
                 '</select>'
               );
               deleteMarkers();
@@ -599,7 +599,7 @@ var nowtime=(hour*60)+minute;
               '<option value=11 >主食</option>'+
               '<option value=12 >小吃</option>'+
               '<option value=13 >甜食</option>'+
-              '<option value=14 >液體</option>'+
+              '<option value=14 >咖啡</option>'+
               '</select>'
             );
             deleteMarkers();
@@ -723,7 +723,7 @@ var nowtime=(hour*60)+minute;
               '<option value=21 >主食</option>'+
               '<option value=22 >小吃</option>'+
               '<option value=23 >甜食</option>'+
-              '<option value=24 >液體</option>'+
+              '<option value=24 >咖啡</option>'+
               '</select>'
             );
 
