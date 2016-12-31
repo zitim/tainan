@@ -393,7 +393,7 @@ var nowtime=(hour*60)+minute;
         break;
       case 3:
         image = {
-          url: 'https://raw.githubusercontent.com/zitim/tainan/master/public/assets/img/ice-cream.png',
+          url: 'https://raw.githubusercontent.com/zitim/tainan/master/public/assets/img/doughnut.png',
           size: new google.maps.Size(32, 32),
           origin: new google.maps.Point(0, 0),
           anchor: new google.maps.Point(0, 32)
@@ -401,7 +401,7 @@ var nowtime=(hour*60)+minute;
         break;
       case 4:
         image = {
-          url: 'https://raw.githubusercontent.com/zitim/tainan/master/public/assets/img/coffee.png',
+          url: 'https://raw.githubusercontent.com/zitim/tainan/master/public/assets/img/coffee2.png',
           size: new google.maps.Size(32, 32),
           origin: new google.maps.Point(0, 0),
           anchor: new google.maps.Point(0, 32)
