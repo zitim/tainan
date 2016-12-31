@@ -5,213 +5,1025 @@
   color: #fff;
   background: gray;
 }*/
-ul { list-style:none; 
-}
-li { list-style:none; 
-}
+
 <style>
-      html, body {
-        height: 100%;
-        margin: 0;
-        padding: 0;
-        /*background-attachment: fixed;*/
-        background-color: #FFAF60;
-        overflow: hidden
-      }
-      h3{
-        color:#4A4AFF;
-        font-family:Microsoft JhengHei;
-      }
-      #sitebody{
-　     width:600px;
-　     margin:0 auto;
-　     font-size:13px;
-      }
+  html, body {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    /*background-attachment: fixed;*/
+    background-color: #FFAF60;
+    overflow: hidden
+  }
+  h3{
+    color: #272727  ;
+    font-family:Microsoft JhengHei;
+    border-bottom-style: 1px solid ;
+    border-color: #BEBEBE ;
+  }
+  ul{ 
+    /*list-style:none; */
+     border-top-style:dashed;
+     border-bottom-style:dashed;
+     border-width:1px;
+     border-color: #BEBEBE ;
+     /*list-style-image: url('https://raw.githubusercontent.com/zitim/tainan/master/public/assets/img/location.png');*/
+  }
+  ul li:nth-child(1) {
+    list-style-image: url('https://raw.githubusercontent.com/zitim/tainan/master/public/assets/img/location-point.png');
+  }
+  ul li:nth-child(3) {
+    list-style-image: url('https://raw.githubusercontent.com/zitim/tainan/master/public/assets/img/phone-receiver.png');
+  }
+  ul li:nth-child(5) {
+    list-style-image: url('https://raw.githubusercontent.com/zitim/tainan/master/public/assets/img/clock-circular-outline.png');
+  }
 
+  li{ 
+    /*list-style:none;*/ 
+  }
+  select{
+    font-family:Microsoft JhengHei;
+    font-size:15px;
+   
+    width: 100px;
+    border-color:#FF7744;
+  }
+  a {
+    text-decoration:none;
+    color:#ffffff;
+  }
+  a:link{
+  //設定還沒有瀏覽過的連結
+  text-decoration:none;
+  background-color:transparent;
+  }
+  a:visited {
+  //設定已經瀏覽過的連結
+  color:#ffffff;
+  background-color:transparent;
+  }
+  a:hover {
+  //設定滑鼠移經的連結
+  text-decoration:underline;
+  background-color:transparent;
+  /*color:white;*/
+  }
+  a:active {
+  //設定正在點選的連結
+  text-decoration:none;
+  /*background-color:white;*/
+  color:transparent;
+  }
+  button {
+    background-color: transparent;
+    border: none;
+    outline:none;
+  }
+  
+  .header{
+    width:100%;
+    height:50px;
+    background-color: #FFAF60;
+  }
+  .headerfont{
+    border-style: 0px solid;
+    border-color:#FFAF60;
+    font-size:17px;
+    font-family:Microsoft JhengHei;
+    color:#FFFFFF;
+    float: right;
+    width:100px;
+    height:50px;
+    text-align:center;
+    line-height:50px;
+  }
+  .headertitle{
+    border-style: 0px solid;
+    border-color:#FFAF60;
+    font-size:30px;
+    font-family:Microsoft JhengHei;
+    color:#FFFFFF;
+    float: left;
+    
+    height:50px;
+    text-align:center;
+    line-height:50px;
+  }
+  .headerfont:hover{
+    background:#F75000;
+  }
 
-      #top {
-        background-color: #FFAF60;
-        height: 5%;
-      }
-      #filter {
-        background-color: #FF7744;
-        height: 30px;
-        width:100%;
-        font-family:Microsoft JhengHei;
-        color:#FFFFFF;
-        text-align:left;
-      }
-      #map {
-        height:90%;
-        width: 70%;  
-        margin:0 auto;
-        float:center;
-      }
-      #sidebar-left {
-        overflow-y: scroll;
-        overflow-x: scroll;
-        /*background-color:#E38EFF;*/
+  #top {
+    background-color: #FFAF60;
+    height: 5%;
+  }
+  #filter {
+    background-color: #FF7744;
+    height: 30px;
+    width:100%;
+    font-family:Microsoft JhengHei;
+    color:#FFFFFF;
+    text-align:left;
+  }
 
-        border-style:outset;
-        height: 90%;
-        width: 25%;
-        float:left;
-        font-family:Microsoft JhengHei;
-        font-size:12px;
-      }
-     
-      #fr{
-       border-style:none;
-       width: 100%;
-       float:center;
-       border-bottom: 1px solid #d2d2d2;
-       list-style-type:none;
-       color:blue;
-      }
-      #fr2{
-       border-style:none;
-       width: 95%;
-       float:center;
-       margin:0px auto;
-       list-style-type:none;
-       color:black;
-       
-      }
+  #sitebody{
+　  width:600px;
+　  margin:0 auto;
+　  font-size:13px;
+  }
 
-      #favorite {
-        background-color: transparent;
-        border: none;
-         outline:none;
-      }
+  #map {
+    height:90%;
+    width: 70%;  
+    margin:0 auto;
+    float:center;
+  }
 
-      #res_detail{
-        color:black;
-      }
+  #sidebar-left {
+    overflow-y: scroll;
+    overflow-x: scroll;
+    /*background-color:#E38EFF;*/
 
-      #opening_hours1{
-        font-family:Microsoft JhengHei;
-        font-size:15px;
-       
-        width: 100px;
-        border-color:#FF7744;
+    border-style:outset;
+    height: 90%;
+    width: 25%;
+    float:left;
+    font-family:Microsoft JhengHei;
+    font-size:14px;
+  }
+  #sidebar-left::-webkit-scrollbar-track
+  {
+    -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
+    background-color: #F5F5F5;
+  }
 
-       }
-      
-      #sidebar-left::-webkit-scrollbar-track
-        {
-          -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
-          background-color: #F5F5F5;
-        }
+  #sidebar-left::-webkit-scrollbar
+  {
+    width: 10px;
+    background-color: #F5F5F5;
+  }
+  #sidebar-left::-webkit-scrollbar-thumb
+  {
+    background-color: #F90; 
+    background-image: -webkit-linear-gradient(45deg,
+                                              rgba(255, 255, 255, .2) 25%,
+                          transparent 25%,
+                          transparent 50%,
+                          rgba(255, 255, 255, .2) 50%,
+                          rgba(255, 255, 255, .2) 75%,
+                          transparent 75%,
+                          transparent)
+  }
+ 
+  #fr{
+    border-style:none;
+    width: 100%;
+    float:center;
+    border-bottom: 1px double #d2d2d2;
+    list-style-type:none;
+    color:blue;
+  }
+  #fr2{
+    border-style:none;
+    width: 95%;
+    float:center;
+    margin:0px auto;
+    list-style-type:none;
+    color:black;
+  }
 
-        #sidebar-left::-webkit-scrollbar
-        {
-          width: 10px;
-          background-color: #F5F5F5;
-        }
+  #favorite {
+    background-color: transparent;
+    border: none;
+    outline:none;
+  }
 
-        #sidebar-left::-webkit-scrollbar-thumb
-        {
-          background-color: #F90; 
-          background-image: -webkit-linear-gradient(45deg,
-                                                    rgba(255, 255, 255, .2) 25%,
-                                transparent 25%,
-                                transparent 50%,
-                                rgba(255, 255, 255, .2) 50%,
-                                rgba(255, 255, 255, .2) 75%,
-                                transparent 75%,
-                                transparent)
-        }
+  #res_detail{
+    color:black;
+  }
 
-      #res{
-        font-family:Microsoft JhengHei;
-      }
+  #res{
+    font-family:Microsoft JhengHei;
+  }
 
-        #btnLogout{
-          float:right;
-          -webkit-border-radius: 7;
-          -moz-border-radius: 7;
-          border-radius:0px;
-          font-family: Arial;
-          color: #ffffff;
-          font-size: 16px;
-          background: #3b5998;
-          /*padding: 7px 10px 7px 10px;*/
-          text-decoration: none;
-          border: none;
-        }
+  #btnLogout{
+    float:right;
+    -webkit-border-radius: 7;
+    -moz-border-radius: 7;
+    border-radius:0px;
+    font-family: Arial;
+    color: #ffffff;
+    font-size: 16px;
+    background: #3b5998;
+    /*padding: 7px 10px 7px 10px;*/
+    text-decoration: none;
+    border: none;
+  }
 
-    #btnLogout:hover {
-        background: #6d84b4;
-        text-decoration: none;
-      }
+  #btnLogout:hover {
+    background: #6d84b4;
+    text-decoration: none;
+  }
 
-      #fblogin{
+  #fblogin{
 /*         vertical-align: middle;
-        float:center;
-        text-align: center;
-        margin-left: auto;
-        margin-right: auto; */
-        margin: auto;
-      }
-      #status{
-        text-align: right;
-      }
-     
+    float:center;
+    text-align: center;
+    margin-left: auto;
+    margin-right: auto; */
+    margin: auto;
+  }
+  #status{
+    text-align: right;
+  }
 
+  .gmnoprint{
+      border-top-style: 3px solid ;
+  }
 
+  .chcolor:hover{
+    background:#FFBD9D;
+  }
 
-      .header{
-        width:100%;
-        height:50px;
-        background-color: #FFAF60;
+  .clearfix{
+    color:#5555FF
+  }
 
+  @media only screen and (max-width: 350px) {
+   <style>
+  html, body {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    /*background-attachment: fixed;*/
+    background-color: #FFAF60;
+    overflow: hidden
+  }
+  h3{
+    color: #3C3C3C;
+    font-family:Microsoft JhengHei;
+  }
+  ul{ 
+    list-style:none; 
+     border-top-style:dashed;
+     border-bottom-style:dashed;
+     border-width:1px;
+     border-color: #BEBEBE ;
+  }
+  ul li:nth-child(1) {
+    list-style-image: url('https://raw.githubusercontent.com/zitim/tainan/master/public/assets/img/location-point.png');
+  }
+  ul li:nth-child(3) {
+    list-style-image: url('https://raw.githubusercontent.com/zitim/tainan/master/public/assets/img/phone-receiver.png');
+  }
+  ul li:nth-child(5) {
+    list-style-image: url('https://raw.githubusercontent.com/zitim/tainan/master/public/assets/img/clock-circular-outline.png');
+  }
+  li{ 
+   
+    list-style:none; 
+  
+  }
+  select{
+    font-family:Microsoft JhengHei;
+    font-size:10px;
+   
+    width: 70px;
+    border-color:#FF7744;
+  }
+  a {
+    text-decoration:none;
+  }
+  :link{
+  //設定還沒有瀏覽過的連結
+  text-decoration:none;
+  background-color:transparent;
+  }
+  a:visited {
+  //設定已經瀏覽過的連結
+  color:#ffffff;
+  background-color:transparent;
+  }
+  a:hover {
+  //設定滑鼠移經的連結
+  text-decoration:underline;
+  background-color:transparent;
+  /*color:white;*/
+  }
+  a:active {
+  //設定正在點選的連結
+  text-decoration:none;
+  /*background-color:white;*/
+  color:transparent;
+  }
+  button {
+    background-color: transparent;
+    border: none;
+    outline:none;
+  }
+  
+  .header{
+    width:100%;
+    height:50px;
+    background-color: #FFAF60;
+  }
+  .headerfont{
+    border-style: 0px solid;
+    border-color:#FFAF60;
+    font-size:10px;
+    font-family:Microsoft JhengHei;
+    color:#FFFFFF;
+    float: right;
+    width:50px;
+    height:50px;
+    text-align:center;
+    line-height:50px;
+  }
+  .headertitle{
+    border-style: 0px solid;
+    border-color:#FFAF60;
+    font-size:20px;
+    font-family:Microsoft JhengHei;
+    color:#FFFFFF;
+    float: left;
+    
+    height:50px;
+    text-align:center;
+    line-height:50px;
+  }
+  .headerfont:hover{
+    background:#F75000;
+  }
 
-      }
-     
+  #top {
+    background-color: #FFAF60;
+    height: 5%;
+  }
+  #filter {
+    background-color: #FF7744;
+    height: 30px;
+    width:100%;
+    font-family:Microsoft JhengHei;
+    color:#FFFFFF;
+    text-align:left;
+  }
 
-      .headerfont{
-        border-style: 0px solid;
-        border-color:#FFAF60;
-        font-size:17px;
-        font-family:Microsoft JhengHei;
-        color:#FFFFFF;
-        float: right;
-        width:100px;
-        height:50px;
-        text-align:center;
-        line-height:50px;
-      }
-       .headertitle{
-        border-style: 0px solid;
-        border-color:#FFAF60;
-        font-size:30px;
-        font-family:Microsoft JhengHei;
-        color:#FFFFFF;
-        float: left;
-        
-        height:50px;
-        text-align:center;
-        line-height:50px;
-      }
-      .headerfont:hover{background:#F75000;}
-      
-      .gmnoprint{
-          border-top-style: 3px solid ;
-        }
+  #sitebody{
+　  width:600px;
+　  margin:0 auto;
+　  font-size:13px;
+    display:inline;
+  }
 
+  #map {
+    height:70%;
+    width: 100%;  
+    margin:0 auto;
+    float:center;
+  }
 
-      .chcolor:hover{background:#F0F0F0;}
+  #sidebar-left {
 
-      .clearfix{color:#5555FF}
+    overflow-y: scroll;
+    
+    /*background-color:#E38EFF;*/
 
-      a {
-         text-decoration:none;
-      }
-      button {
-        background-color: transparent;
-        border: none;
-        outline:none;
-      }
+    border-style:outset;
+    height: 37%;
+    width: 100%;
+    float:left;
+    font-family:Microsoft JhengHei;
+    font-size:12px;
+    display:inline;
+    white-space: nowrap;
+    display: inline-block;
+    border-style:outset;
+
+  }
+  #sidebar-left::-webkit-scrollbar-track
+  {
+    -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
+    background-color: #F5F5F5;
+  }
+
+  #sidebar-left::-webkit-scrollbar
+  {
+    width: 10px;
+    background-color: #F5F5F5;
+  }
+  #sidebar-left::-webkit-scrollbar-thumb
+  {
+    background-color: #F90; 
+    background-image: -webkit-linear-gradient(45deg,
+                                              rgba(255, 255, 255, .2) 25%,
+                          transparent 25%,
+                          transparent 50%,
+                          rgba(255, 255, 255, .2) 50%,
+                          rgba(255, 255, 255, .2) 75%,
+                          transparent 75%,
+                          transparent)
+  }
+ 
+  #fr{
+    display:inline;
+    border-style:none;
+    width: 50%;
+    float:center;
+    border-bottom: 1px double #d2d2d2;
+    list-style-type:none;
+    color:blue;
+     white-space: nowrap; 
+     display: inline-block;
+  }
+  #fr2{
+    display:inline;
+    overflow: hidden; /* 超過範圍隱藏 */
+    white-space: nowrap; /* 不斷行 */
+    border-style:none;
+    width: 100%;
+    float:left;
+    display: inline-block;
+    
+    list-style-type:none;
+    color:black;
+  }
+
+  #favorite {
+    background-color: transparent;
+    border: none;
+    outline:none;
+  }
+
+  #res_detail{
+    color:black;
+  }
+
+  #res{
+    font-family:Microsoft JhengHei;
+  }
+
+  #btnLogout{
+    float:right;
+    -webkit-border-radius: 7;
+    -moz-border-radius: 7;
+    border-radius:0px;
+    font-family: Arial;
+    color: #ffffff;
+    font-size: 16px;
+    background: #3b5998;
+    /*padding: 7px 10px 7px 10px;*/
+    text-decoration: none;
+    border: none;
+  }
+
+  #btnLogout:hover {
+    background: #6d84b4;
+    text-decoration: none;
+  }
+
+  #fblogin{
+/*         vertical-align: middle;
+    float:center;
+    text-align: center;
+    margin-left: auto;
+    margin-right: auto; */
+    margin: auto;
+  }
+  #status{
+    text-align: right;
+  }
+
+  .gmnoprint{
+      border-top-style: 3px solid ;
+  }
+
+  .chcolor:hover{
+    background:#FFBD9D;
+  }
+
+  .clearfix{
+    color:#5555FF
+  }
+
 </style>
+}
+
+@media only screen and (max-width: 400px) and (min-width: 351px) {
+   <style>
+  html, body {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    /*background-attachment: fixed;*/
+    background-color: #FFAF60;
+    overflow: hidden
+  }
+  h3{
+    color: #3C3C3C;
+    font-family:Microsoft JhengHei;
+  }
+  ul{ 
+    list-style:none; 
+     border-top-style:dashed;
+     border-bottom-style:dashed;
+     border-width:1px;
+     border-color: #BEBEBE ;
+  }
+  ul li:nth-child(1) {
+    list-style-image: url('https://raw.githubusercontent.com/zitim/tainan/master/public/assets/img/location-point.png');
+  }
+  ul li:nth-child(3) {
+    list-style-image: url('https://raw.githubusercontent.com/zitim/tainan/master/public/assets/img/phone-receiver.png');
+  }
+  ul li:nth-child(5) {
+    list-style-image: url('https://raw.githubusercontent.com/zitim/tainan/master/public/assets/img/clock-circular-outline.png');
+  }
+  li{ 
+   
+    list-style:none; 
+  
+  }
+  select{
+    font-family:Microsoft JhengHei;
+    font-size:10px;
+   
+    width: 70px;
+    border-color:#FF7744;
+  }
+  a {
+    text-decoration:none;
+  }
+  :link{
+  //設定還沒有瀏覽過的連結
+  text-decoration:none;
+  background-color:transparent;
+  }
+  a:visited {
+  //設定已經瀏覽過的連結
+  color:#ffffff;
+  background-color:transparent;
+  }
+  a:hover {
+  //設定滑鼠移經的連結
+  text-decoration:underline;
+  background-color:transparent;
+  /*color:white;*/
+  }
+  a:active {
+  //設定正在點選的連結
+  text-decoration:none;
+  /*background-color:white;*/
+  color:transparent;
+  }
+  button {
+    background-color: transparent;
+    border: none;
+    outline:none;
+  }
+  
+  .header{
+    width:100%;
+    height:50px;
+    background-color: #FFAF60;
+  }
+  .headerfont{
+    border-style: 0px solid;
+    border-color:#FFAF60;
+    font-size:10px;
+    font-family:Microsoft JhengHei;
+    color:#FFFFFF;
+    float: right;
+    width:50px;
+    height:50px;
+    text-align:center;
+    line-height:50px;
+  }
+  .headertitle{
+    border-style: 0px solid;
+    border-color:#FFAF60;
+    font-size:20px;
+    font-family:Microsoft JhengHei;
+    color:#FFFFFF;
+    float: left;
+    
+    height:50px;
+    text-align:center;
+    line-height:50px;
+  }
+  .headerfont:hover{
+    background:#F75000;
+  }
+
+  #top {
+    background-color: #FFAF60;
+    height: 5%;
+  }
+  #filter {
+    background-color: #FF7744;
+    height: 30px;
+    width:100%;
+    font-family:Microsoft JhengHei;
+    color:#FFFFFF;
+    text-align:left;
+  }
+
+  #sitebody{
+　  width:600px;
+　  margin:0 auto;
+　  font-size:13px;
+    display:inline;
+  }
+
+  #map {
+    height:70%;
+    width: 100%;  
+    margin:0 auto;
+    float:center;
+  }
+
+  #sidebar-left {
+
+    overflow-y: scroll;
+    
+    /*background-color:#E38EFF;*/
+
+    border-style:outset;
+    height: 32%;
+    width: 100%;
+    float:left;
+    font-family:Microsoft JhengHei;
+    font-size:12px;
+    display:inline;
+    white-space: nowrap;
+    display: inline-block;
+    border-style:outset;
+
+  }
+  #sidebar-left::-webkit-scrollbar-track
+  {
+    -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
+    background-color: #F5F5F5;
+  }
+
+  #sidebar-left::-webkit-scrollbar
+  {
+    width: 10px;
+    background-color: #F5F5F5;
+  }
+  #sidebar-left::-webkit-scrollbar-thumb
+  {
+    background-color: #F90; 
+    background-image: -webkit-linear-gradient(45deg,
+                                              rgba(255, 255, 255, .2) 25%,
+                          transparent 25%,
+                          transparent 50%,
+                          rgba(255, 255, 255, .2) 50%,
+                          rgba(255, 255, 255, .2) 75%,
+                          transparent 75%,
+                          transparent)
+  }
+ 
+  #fr{
+    display:inline;
+    border-style:none;
+    width: 50%;
+    float:center;
+    border-bottom: 1px double #d2d2d2;
+    list-style-type:none;
+    color:blue;
+     white-space: nowrap; 
+     display: inline-block;
+  }
+  #fr2{
+    display:inline;
+    overflow: hidden; /* 超過範圍隱藏 */
+    white-space: nowrap; /* 不斷行 */
+    border-style:none;
+    width: 100%;
+    float:left;
+    display: inline-block;
+    
+    list-style-type:none;
+    color:black;
+  }
+
+  #favorite {
+    background-color: transparent;
+    border: none;
+    outline:none;
+  }
+
+  #res_detail{
+    color:black;
+  }
+
+  #res{
+    font-family:Microsoft JhengHei;
+  }
+
+  #btnLogout{
+    float:right;
+    -webkit-border-radius: 7;
+    -moz-border-radius: 7;
+    border-radius:0px;
+    font-family: Arial;
+    color: #ffffff;
+    font-size: 16px;
+    background: #3b5998;
+    /*padding: 7px 10px 7px 10px;*/
+    text-decoration: none;
+    border: none;
+  }
+
+  #btnLogout:hover {
+    background: #6d84b4;
+    text-decoration: none;
+  }
+
+  #fblogin{
+/*         vertical-align: middle;
+    float:center;
+    text-align: center;
+    margin-left: auto;
+    margin-right: auto; */
+    margin: auto;
+  }
+  #status{
+    text-align: right;
+  }
+
+  .gmnoprint{
+      border-top-style: 3px solid ;
+  }
+
+  .chcolor:hover{
+    background:#FFBD9D;
+  }
+
+  .clearfix{
+    color:#5555FF
+  }
+
+</style>
+}
 
 
+@media only screen and (max-width: 600px) and (min-width: 401px) {
+   <style>
+  html, body {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    /*background-attachment: fixed;*/
+    background-color: #FFAF60;
+    overflow: hidden
+  }
+  h3{
+    color: #3C3C3C;
+    font-family:Microsoft JhengHei;
+  }
+  ul{ 
+    list-style:none; 
+     border-top-style:dashed;
+     border-bottom-style:dashed;
+     border-width:1px;
+     border-color: #BEBEBE ;
+  }
+  ul li:nth-child(1) {
+    list-style-image: url('https://raw.githubusercontent.com/zitim/tainan/master/public/assets/img/location-point.png');
+  }
+  ul li:nth-child(3) {
+    list-style-image: url('https://raw.githubusercontent.com/zitim/tainan/master/public/assets/img/phone-receiver.png');
+  }
+  ul li:nth-child(5) {
+    list-style-image: url('https://raw.githubusercontent.com/zitim/tainan/master/public/assets/img/clock-circular-outline.png');
+  }
+  li{ 
+   
+    list-style:none; 
+  
+  }
+  select{
+    font-family:Microsoft JhengHei;
+    font-size:10px;
+   
+    width: 70px;
+    border-color:#FF7744;
+  }
+  a {
+    text-decoration:none;
+  }
+  :link{
+  //設定還沒有瀏覽過的連結
+  text-decoration:none;
+  background-color:transparent;
+  }
+  a:visited {
+  //設定已經瀏覽過的連結
+  color:#ffffff;
+  background-color:transparent;
+  }
+  a:hover {
+  //設定滑鼠移經的連結
+  text-decoration:underline;
+  background-color:transparent;
+  /*color:white;*/
+  }
+  a:active {
+  //設定正在點選的連結
+  text-decoration:none;
+  /*background-color:white;*/
+  color:transparent;
+  }
+  button {
+    background-color: transparent;
+    border: none;
+    outline:none;
+  }
+  
+  .header{
+    width:100%;
+    height:50px;
+    background-color: #FFAF60;
+  }
+  .headerfont{
+    border-style: 0px solid;
+    border-color:#FFAF60;
+    font-size:10px;
+    font-family:Microsoft JhengHei;
+    color:#FFFFFF;
+    float: right;
+    width:50px;
+    height:50px;
+    text-align:center;
+    line-height:50px;
+  }
+  .headertitle{
+    border-style: 0px solid;
+    border-color:#FFAF60;
+    font-size:20px;
+    font-family:Microsoft JhengHei;
+    color:#FFFFFF;
+    float: left;
+    
+    height:50px;
+    text-align:center;
+    line-height:50px;
+  }
+  .headerfont:hover{
+    background:#F75000;
+  }
+
+  #top {
+    background-color: #FFAF60;
+    height: 5%;
+  }
+  #filter {
+    background-color: #FF7744;
+    height: 30px;
+    width:100%;
+    font-family:Microsoft JhengHei;
+    color:#FFFFFF;
+    text-align:left;
+  }
+
+  #sitebody{
+　  width:600px;
+　  margin:0 auto;
+　  font-size:13px;
+    display:inline;
+  }
+
+  #map {
+    height:70%;
+    width: 100%;  
+    margin:0 auto;
+    float:center;
+  }
+
+  #sidebar-left {
+
+    overflow-y: scroll;
+    
+    /*background-color:#E38EFF;*/
+
+    border-style:outset;
+    height: 29%;
+    width: 100%;
+    float:left;
+    font-family:Microsoft JhengHei;
+    font-size:12px;
+    display:inline;
+    white-space: nowrap;
+    display: inline-block;
+    border-style:outset;
+
+  }
+  #sidebar-left::-webkit-scrollbar-track
+  {
+    -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
+    background-color: #F5F5F5;
+  }
+
+  #sidebar-left::-webkit-scrollbar
+  {
+    width: 10px;
+    background-color: #F5F5F5;
+  }
+  #sidebar-left::-webkit-scrollbar-thumb
+  {
+    background-color: #F90; 
+    background-image: -webkit-linear-gradient(45deg,
+                                              rgba(255, 255, 255, .2) 25%,
+                          transparent 25%,
+                          transparent 50%,
+                          rgba(255, 255, 255, .2) 50%,
+                          rgba(255, 255, 255, .2) 75%,
+                          transparent 75%,
+                          transparent)
+  }
+ 
+  #fr{
+    display:inline;
+    border-style:none;
+    width: 50%;
+    float:center;
+    border-bottom: 1px double #d2d2d2;
+    list-style-type:none;
+    color:blue;
+     white-space: nowrap; 
+     display: inline-block;
+  }
+  #fr2{
+    display:inline;
+    overflow: hidden; /* 超過範圍隱藏 */
+    white-space: nowrap; /* 不斷行 */
+    border-style:none;
+    width: 100%;
+    float:left;
+    display: inline-block;
+    
+    list-style-type:none;
+    color:black;
+  }
+
+  #favorite {
+    background-color: transparent;
+    border: none;
+    outline:none;
+  }
+
+  #res_detail{
+    color:black;
+  }
+
+  #res{
+    font-family:Microsoft JhengHei;
+  }
+
+  #btnLogout{
+    float:right;
+    -webkit-border-radius: 7;
+    -moz-border-radius: 7;
+    border-radius:0px;
+    font-family: Arial;
+    color: #ffffff;
+    font-size: 16px;
+    background: #3b5998;
+    /*padding: 7px 10px 7px 10px;*/
+    text-decoration: none;
+    border: none;
+  }
+
+  #btnLogout:hover {
+    background: #6d84b4;
+    text-decoration: none;
+  }
+
+  #fblogin{
+/*         vertical-align: middle;
+    float:center;
+    text-align: center;
+    margin-left: auto;
+    margin-right: auto; */
+    margin: auto;
+  }
+  #status{
+    text-align: right;
+  }
+
+  .gmnoprint{
+      border-top-style: 3px solid ;
+  }
+
+  .chcolor:hover{
+    background:#FFBD9D;
+  }
+
+  .clearfix{
+    color:#5555FF
+  }
+
+</style>
+}
