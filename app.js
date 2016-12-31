@@ -7,7 +7,8 @@ var app = require('express')();
 var partials = require('express-partials');
 var static = require('serve-static');
 var bodyParser = require('body-parser');
-var favicon = require('serve-favicon');    
+var favicon = require('serve-favicon'); 
+var session = require('express-session');
 
 // router設定
 var page = require('./routes/page');
@@ -17,6 +18,9 @@ app.set('port', (process.env.PORT || 3001));
 // 讓回傳的值可以解析 json與 urlencoded
 app.use(bodyParser.json()); 
 app.use(bodyParser.urlencoded({ extended: true}));
+app.use(session({
+  secret: 'recommand 128 bytes random string', // 建议使用 128 个字符的随机字符串
+}));
 
 // 版型設定
 app.use(partials());
@@ -41,6 +45,8 @@ app.get('/getJson', page.getJson);
 app.get('/list',page.list);
 app.use("/public/assets/js/markerclusterer.js", express.static(__dirname + '/public/assets/js/markerclusterer.js'));
 app.use("/public/assets/img", express.static(__dirname + '/public/assets/img'));
+app.post('/delete_session',page.delete_session);
+//偵測3000 port
 
 //偵測3000 port
 
