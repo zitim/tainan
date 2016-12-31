@@ -148,13 +148,16 @@ exports.edit = function(req, res) {
 
 }
 
+exports.delete_session = function(req, res) {
+    req.session.check='no'; 
+    res.send(req.session.check);
+};
 exports.postAjax = function(req, res) {
     // ajax
-    if (req.body.password == 1234) {
-        res.send('success');
-    } else(
-        res.send('error')
-    );
+    req.session.name=req.body.password; 
+    req.session.check='yes'; 
+    
+    res.send(req.session.name);
 };
 
 //get取得資料
