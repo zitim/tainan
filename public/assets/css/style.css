@@ -219,6 +219,7 @@
     /*padding: 7px 10px 7px 10px;*/
     text-decoration: none;
     border: none;
+    outline:none;
   }
 
   #btnLogout:hover {
@@ -477,6 +478,7 @@
     /*padding: 7px 10px 7px 10px;*/
     text-decoration: none;
     border: none;
+    outline:none;
   }
 
   #btnLogout:hover {
@@ -736,6 +738,7 @@
     /*padding: 7px 10px 7px 10px;*/
     text-decoration: none;
     border: none;
+    outline:none;
   }
 
   #btnLogout:hover {
@@ -996,6 +999,7 @@
     /*padding: 7px 10px 7px 10px;*/
     text-decoration: none;
     border: none;
+    outline:none;
   }
 
   #btnLogout:hover {
