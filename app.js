@@ -1,5 +1,6 @@
 // node 預設模組
 var path = require('path');
+var express = require('express');
 
 // NPM 模組
 var app = require('express')();
@@ -38,6 +39,8 @@ app.post('/postAjax',page.postAjax);
 app.get('/getAjax',page.getAjax);
 app.get('/getJson', page.getJson);
 app.get('/list',page.list);
+app.use("/public/assets/js/markerclusterer.js", express.static(__dirname + '/public/assets/js/markerclusterer.js'));
+app.use("/public/assets/img", express.static(__dirname + '/public/assets/img'));
 
 //偵測3000 port
 
