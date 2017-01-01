@@ -2,13 +2,14 @@ var restaurants=[];
 var all=[];
 var focusInfoWindow;
 var map;
-
+// var user_id=66;
 var markers = [];
 var focusList;
 var infoWindows=[];
 var userPosition = { lat: 23.973875, lng: 120.982024 };
 var date=new Date();
 var day=date.getDay();
+day=1;
 var hour=date.getHours();
 var minute=date.getMinutes();
 var nowtime=(hour*60)+minute;
@@ -739,6 +740,7 @@ var nowtime=(hour*60)+minute;
                   show_Favorite.push(data[i]);
                 }
               } 
+              show_Favorite=[];
               for(var i=0;i<show_Favorite.length;i++){
                 console.log(show_Favorite.length);
                 if(day!=show_Favorite[i].WorkingExcp&&show_Favorite[i].WorkingWeek[1]>=day&&day>=show_Favorite[i].WorkingWeek[0]){
