@@ -114,9 +114,9 @@
     background:#F75000;
   }
   .loginpage{
-    height : 500px;
-    width : 2000px;
-    background-image: url("https://raw.githubusercontent.com/zitim/tainan/master/public/assets/img/tainan2.jpg");
+    height : 100%;
+    width : 100%;
+    background-image: url("https://raw.githubusercontent.com/zitim/tainan/master/public/assets/img/egg.jpg");
     background-repeat: no-repeat;
     margin: 0 auto;
   }
