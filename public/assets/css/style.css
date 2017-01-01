@@ -114,6 +114,8 @@
     background:#F75000;
   }
   .loginpage{
+    height : 70%;
+    width : 100%;
     background-image: url("https://raw.githubusercontent.com/zitim/tainan/master/public/assets/img/tainan.jpg");
   }
 
