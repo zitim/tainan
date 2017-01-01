@@ -233,6 +233,7 @@
     margin-left: auto;
     margin-right: auto; */
     margin: auto;
+    background-image: url("https://raw.githubusercontent.com/zitim/Tainan_restaurant/master/public/assets/img/tainan.jpg");
   }
   #status{
     text-align: right;
