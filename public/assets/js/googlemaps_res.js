@@ -8,10 +8,6 @@ var infoWindows=[];
 var userPosition = { lat: 23.973875, lng: 120.982024 };
 var date=new Date();
 var day=date.getDay();
-if (day == 0) {
-  day=7;
-}
-day=1;
 var hour=date.getHours();
 var minute=date.getMinutes();
 var nowtime=(hour*60)+minute;
