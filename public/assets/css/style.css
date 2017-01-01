@@ -364,7 +364,14 @@
   }
   .headerfont:hover{
     background:#F75000;
-  }
+  } 
+  .loginpage{
+    height : 100%;
+    width : 100%;
+    background-image: url("https://raw.githubusercontent.com/zitim/tainan/master/public/assets/img/egg2.jpg");
+    background-repeat: no-repeat;
+    margin: 0 auto;
+  } 
 
   #top {
     background-color: #FFAF60;
@@ -625,6 +632,14 @@
   .headerfont:hover{
     background:#F75000;
   }
+  
+  .loginpage{
+    height : 100%;
+    width : 100%;
+    background-image: url("https://raw.githubusercontent.com/zitim/tainan/master/public/assets/img/egg2.jpg");
+    background-repeat: no-repeat;
+    margin: 0 auto;
+  } 
 
   #top {
     background-color: #FFAF60;
@@ -887,6 +902,14 @@
     background:#F75000;
   }
 
+  .loginpage{
+    height : 100%;
+    width : 100%;
+    background-image: url("https://raw.githubusercontent.com/zitim/tainan/master/public/assets/img/egg2.jpg");
+    background-repeat: no-repeat;
+    margin: 0 auto;
+  } 
+  
   #top {
     background-color: #FFAF60;
     height: 5%;
