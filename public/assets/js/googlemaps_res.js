@@ -2,7 +2,7 @@ var restaurants=[];
 var all=[];
 var focusInfoWindow;
 var map;
-var user_id=66;
+
 var markers = [];
 var focusList;
 var infoWindows=[];
