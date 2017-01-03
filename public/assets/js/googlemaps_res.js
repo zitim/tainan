@@ -874,29 +874,29 @@ var nowtime=(hour*60)+minute;
       }
     });
 
-    // if (focusInfoWindow != null) {
-    //   focusInfoWindow.close();
-    // }
-    // var infoWindow = new google.maps.InfoWindow({
-    //   content: '<div class="site"><h2><i class="fa fa-map-marker fa-lg" aria-hidden="true"></i>&nbsp;&nbsp;你的位置</h2></div>'
-    // });
-    // var marker = new google.maps.Marker({
-    //   position: userPosition,
-    //   title: "你的位置",
-    //   icon: "https://raw.githubusercontent.com/zitim/tainan/master/public/assets/img/girl.png",
-    // });
-    // marker.addListener('click', function() {
-    //   if (focusInfoWindow != null) {
-    //     focusInfoWindow.close();
-    //   }
-    //   infoWindow.open(map, marker);
-    //   focusInfoWindow = infoWindow;
-    // });
-    // marker.setMap(map);
-    // infoWindow.open(map, marker);
-    // focusInfoWindow = infoWindow;
-    // map.panTo(marker.getPosition());
-    // map.setZoom(12);
+    if (focusInfoWindow != null) {
+      focusInfoWindow.close();
+    }
+    var infoWindow = new google.maps.InfoWindow({
+      content: '<div class="site"><h2><i class="fa fa-map-marker fa-lg" aria-hidden="true"></i>&nbsp;&nbsp;你的位置</h2></div>'
+    });
+    var marker = new google.maps.Marker({
+      position: userPosition,
+      title: "你的位置",
+      icon: "https://raw.githubusercontent.com/zitim/tainan/master/public/assets/img/girl.png",
+    });
+    marker.addListener('click', function() {
+      if (focusInfoWindow != null) {
+        focusInfoWindow.close();
+      }
+      infoWindow.open(map, marker);
+      focusInfoWindow = infoWindow;
+    });
+    marker.setMap(map);
+    infoWindow.open(map, marker);
+    focusInfoWindow = infoWindow;
+    map.panTo(marker.getPosition());
+    map.setZoom(12);
 
     }).trigger( "change" );
 
