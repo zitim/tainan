@@ -5,12 +5,13 @@ var map;
 var markers = [];
 var focusList;
 var infoWindows=[];
-var userPosition = { lat: 23.973875, lng: 120.982024 };
+var userPosition = { lat: 22.997442, lng: 120.212622 };
 var date=new Date();
 var day=date.getDay();
 var hour=date.getHours();
 var minute=date.getMinutes();
 var nowtime=(hour*60)+minute;
+// var user_id=67;
 // nowtime=60;
 //console.log(nowtime);
   
