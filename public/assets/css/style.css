@@ -230,7 +230,8 @@
   }
 
   #btnLogout:hover {
-    background: #FF7744;
+    background-color: #FFAF60
+/*     background: #FF7744; */
     text-decoration: none;
   }
 
