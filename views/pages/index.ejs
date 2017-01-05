@@ -2,8 +2,8 @@
 <input type="button" id="btnLogout" value="Logout" onclick="Logout();">
 <div id="sitebody">
 
-	<div id="filter">
-	</div>
+	<div id="filter"></div>
+	<div id="loader"></div>
 	<div id="sidebar-left" ></div>
 	<div id="map"></div>
 </div>
@@ -22,4 +22,8 @@
       
       
   });
+  var myVar;
+  function myFunction() {
+	myVar = setTimeout(showPage, 1000);
+  }
 </script>
