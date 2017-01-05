@@ -11,7 +11,6 @@ var day=date.getDay();
 var hour=date.getHours();
 var minute=date.getMinutes();
 var nowtime=(hour*60)+minute;
-var user_id=67;
 // nowtime=60;
 //console.log(nowtime);
   
@@ -97,7 +96,6 @@ var user_id=67;
                 $( "#resraurant_type1 option:selected" ).filter(function() {
                   switch($('#resraurant_type1').val()){
                     case 'all':
-                      document.getElementById("loader").style.display = "";
                       //console.log(10);
                       selected=[];
                       deleteMarkers();
@@ -590,9 +588,7 @@ var user_id=67;
     deleteMarkers();
     document.getElementById('sidebar-left').innerHTML = "";
 
-    //document.getElementById("loader").style.display = "";
     $("#opening_hours2").change(function(){
-      document.getElementById("loader").style.display = "";
       $( "#opening_hours2 option:selected" ).filter(function() {
         switch($('#opening_hours2').val()){
           case 'all':
@@ -612,6 +608,7 @@ var user_id=67;
             document.getElementById('sidebar-left').innerHTML = "";
 
             $("#resraurant_type3").change(function(){
+              document.getElementById("loader").style.display = "";
               show_Favorite=[];
               $( "#resraurant_type3 option:selected" ).filter(function() {
                 switch($('#resraurant_type3').val()){
