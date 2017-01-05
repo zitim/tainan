@@ -11,7 +11,7 @@ var day=date.getDay();
 var hour=date.getHours();
 var minute=date.getMinutes();
 var nowtime=(hour*60)+minute;
-// var user_id=67;
+var user_id=67;
 // nowtime=60;
 //console.log(nowtime);
   
@@ -24,8 +24,8 @@ var nowtime=(hour*60)+minute;
   
   function initMap() {
     map = new google.maps.Map(document.getElementById('map'), {
-      zoom: 12,
-      center: {lat: 22.999533, lng: 120.203401}
+      zoom: 11,
+      center: {lat: 23.125000, lng: 120.243401}
     });
 
 
@@ -77,8 +77,8 @@ var nowtime=(hour*60)+minute;
     var selected=[];
     var Opening=[];
       $("#opening_hours1").change(function(){
-
         $( "#opening_hours1 option:selected" ).filter(function() {
+
           switch($('#opening_hours1').val()){
             case 'all':
               $('#resraurant_type2').remove();
@@ -93,10 +93,11 @@ var nowtime=(hour*60)+minute;
               );
 
               $("#resraurant_type1").change(function(){
-
+                document.getElementById("loader").style.display = "";
                 $( "#resraurant_type1 option:selected" ).filter(function() {
                   switch($('#resraurant_type1').val()){
                     case 'all':
+                      document.getElementById("loader").style.display = "";
                       //console.log(10);
                       selected=[];
                       deleteMarkers();
@@ -359,6 +360,9 @@ var nowtime=(hour*60)+minute;
   }
 
   function create_Marker(dataCount,id,res_name,res_X,res_Y,res_address,res_phone,res_time,favorite,res_type) {
+
+    
+
     // Adds markers to the map.
     //console.log(typeof(res_type));
     infowindow = new google.maps.InfoWindow();
@@ -425,6 +429,8 @@ var nowtime=(hour*60)+minute;
     });
     markers.push(marker);
     
+    document.getElementById("loader").style.display = "none";
+    //document.getElementById("sitebody").style.display = "block";
     // var markerCluster = new MarkerClusterer(map, markers,
     //   {imagePath: 'assets/img/m'});
     //console.log(markerCluster);
@@ -584,9 +590,9 @@ var nowtime=(hour*60)+minute;
     deleteMarkers();
     document.getElementById('sidebar-left').innerHTML = "";
 
-
+    //document.getElementById("loader").style.display = "";
     $("#opening_hours2").change(function(){
-
+      document.getElementById("loader").style.display = "";
       $( "#opening_hours2 option:selected" ).filter(function() {
         switch($('#opening_hours2').val()){
           case 'all':
@@ -610,6 +616,7 @@ var nowtime=(hour*60)+minute;
               $( "#resraurant_type3 option:selected" ).filter(function() {
                 switch($('#resraurant_type3').val()){
                   case 'all':
+                    document.getElementById("loader").style.display = "";
                     //console.log(10);
                     selected=[];
                     deleteMarkers();
