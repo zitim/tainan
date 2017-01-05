@@ -530,7 +530,7 @@ var nowtime=(hour*60)+minute;
         '<li><button id="favorite" onclick="change_Favorite(\''+res_id+'\',\''+res_name+'\',\''+res_address+'\',\''+res_phone+'\',\''+res_time+'\', false ,$(this),\''+dataCount+'\')"><img src="https://raw.githubusercontent.com/zitim/Tainan_restaurant/master/public/assets/img/heart.png"></button><button onclick="window.open(\'https://maps.google.com/?saddr=' + userPosition.lat + ',' + userPosition.lng + '&daddr=' + res_address + '\',\'_blank\')" class="route"><img src="https://raw.githubusercontent.com/zitim/tainan/master/public/assets/img/google.png"></button></li>'+
         '</ul>');
       }else{//右邊地圖
-        console.log(listCount);
+        //console.log(listCount);
         $('#sidebar-left > li:nth-child(' + listCount + ') button:nth-child(' + 3 + ')').html('<img src="https://raw.githubusercontent.com/zitim/Tainan_restaurant/master/public/assets/img/heart.png">');
       }
 
@@ -561,7 +561,7 @@ var nowtime=(hour*60)+minute;
           '<li><button id="favorite" onclick="change_Favorite(\''+res_id+'\',\''+res_name+'\',\''+res_address+'\',\''+res_phone+'\',\''+res_time+'\', false ,$(this),\''+dataCount+'\')"><img src="https://raw.githubusercontent.com/zitim/Tainan_restaurant/master/public/assets/img/empty-heart.png"></button><button onclick="window.open(\'https://maps.google.com/?saddr=' + userPosition.lat + ',' + userPosition.lng + '&daddr=' + res_address + '\',\'_blank\')" class="route"><img src="https://raw.githubusercontent.com/zitim/tainan/master/public/assets/img/google.png"></button></li>'+
           '</ul>');
         }else{//右邊地圖
-          console.log(listCount);
+          //console.log(listCount);
           $('#sidebar-left > li:nth-child(' + listCount + ') button:nth-child(' + 3 + ')').html('<img src="https://raw.githubusercontent.com/zitim/Tainan_restaurant/master/public/assets/img/empty-heart.png">');
         }
     }
@@ -740,7 +740,7 @@ var nowtime=(hour*60)+minute;
               } 
               
               for(var i=0;i<show_Favorite.length;i++){
-                console.log(show_Favorite.length);
+                //console.log(show_Favorite.length);
                 if(day!=show_Favorite[i].WorkingExcp&&show_Favorite[i].WorkingWeek[1]>=day&&day>=show_Favorite[i].WorkingWeek[0]){
                     switch(show_Favorite[i].WorkingTime.length){
                       case 2:
@@ -783,7 +783,7 @@ var nowtime=(hour*60)+minute;
               }
               data=Opening;
 
-              console.log(data);
+              //console.log(data);
 
               $("#resraurant_type4").change(function(){
 
