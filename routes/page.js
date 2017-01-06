@@ -16,6 +16,7 @@ exports.index = function(req, res) {
     }else{
 
         res.render('pages/login', {
+            layout: 'layouttest.ejs',
             ogheadTitle: '首頁內容',
             
         });
