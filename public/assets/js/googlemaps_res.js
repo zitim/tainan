@@ -611,12 +611,12 @@ var nowtime=(hour*60)+minute;
             document.getElementById('sidebar-left').innerHTML = "";
 
             $("#resraurant_type3").change(function(){
-              document.getElementById("loader").style.display = "";
+              //document.getElementById("loader").style.display = "";
               show_Favorite=[];
               $( "#resraurant_type3 option:selected" ).filter(function() {
                 switch($('#resraurant_type3').val()){
                   case 'all':
-                    document.getElementById("loader").style.display = "";
+                    //document.getElementById("loader").style.display = "";
                     //console.log(10);
                     selected=[];
                     deleteMarkers();
