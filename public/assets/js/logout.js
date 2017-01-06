@@ -1,4 +1,5 @@
 function Logout() {
+ document.getElementById("loader").style.display = "";
 FB.logout(function(response) {
 // user is now logged out
 });
