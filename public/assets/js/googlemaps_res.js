@@ -77,7 +77,7 @@ var nowtime=(hour*60)+minute;
     var selected=[];
     var Opening=[];
       $("#opening_hours1").change(function(){
-        document.getElementById("loader").style.display = "";
+        
         $( "#opening_hours1 option:selected" ).filter(function() {
 
           switch($('#opening_hours1').val()){
@@ -591,6 +591,7 @@ var nowtime=(hour*60)+minute;
     document.getElementById('sidebar-left').innerHTML = "";
 
     $("#opening_hours2").change(function(){
+      document.getElementById("loader").style.display = "";
       $( "#opening_hours2 option:selected" ).filter(function() {
         switch($('#opening_hours2').val()){
           case 'all':
