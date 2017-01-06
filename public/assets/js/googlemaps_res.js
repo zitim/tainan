@@ -11,7 +11,7 @@ var day=date.getDay();
 var hour=date.getHours();
 var minute=date.getMinutes();
 var nowtime=(hour*60)+minute;
-var user_id=67;
+
 // nowtime=60;
 //console.log(nowtime);
   
@@ -77,6 +77,7 @@ var user_id=67;
     var selected=[];
     var Opening=[];
       $("#opening_hours1").change(function(){
+        document.getElementById("loader").style.display = "";
         $( "#opening_hours1 option:selected" ).filter(function() {
 
           switch($('#opening_hours1').val()){
@@ -901,8 +902,8 @@ var user_id=67;
     marker.setMap(map);
     infoWindow.open(map, marker);
     focusInfoWindow = infoWindow;
-    map.panTo(marker.getPosition());
-    map.setZoom(12);
+    map.panTo(22.883156, 120.245706);
+    map.setZoom(11);
 
     }).trigger( "change" );
 
