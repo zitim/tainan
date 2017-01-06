@@ -4,15 +4,15 @@ FB.logout(function(response) {
 });
 var str='aa';
  $.post('/delete_session', {'password': str}).success(function(data){
-        console.log(data);
+        //console.log(data);
       });
       setTimeout(function () {
     window.location.reload(1);
 }, 2500);
 }
 function statusChangeCallback(response) {
-    console.log('statusChangeCallback');
-    console.log(response);
+//     console.log('statusChangeCallback');
+//     console.log(response);
     // The response object is returned with a status field that lets the
     // app know the current login status of the person.
     // Full docs on the response object can be found in the documentation
