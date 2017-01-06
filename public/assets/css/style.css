@@ -121,7 +121,9 @@
     background-repeat: no-repeat;
     margin: 0 auto;
   }
-
+  #fb_login{
+    float:center;
+  }
   #top {
     background-color: #FFAF60;
     height: 5%;
