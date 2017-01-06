@@ -4,8 +4,8 @@
   <fb:login-/button>  -->
  
  
- <button onclick:FB.login();>123</button>
- <fb:login-button scope="public_profile,email" id="fblogin" data-max-rows="5" data-size="xlarge" onlogin="checkLoginState();">
+ 
+ $nbsp; $nbsp; $nbsp; $nbsp; $nbsp; $nbsp; $nbsp; $nbsp; $nbsp; $nbsp; $nbsp; $nbsp; $nbsp; $nbsp; $nbsp;<fb:login-button scope="public_profile,email" id="fblogin" data-max-rows="5" data-size="xlarge" onlogin="checkLoginState();">
  </fb:login-button>
   <div id="status">
   </div>
@@ -14,18 +14,5 @@
   jQuery(document).ready(function($) {
    
   });
-
 </script>
 <script type="text/javascript" src="assets/js/login.js"></script>
-<script>
-FB.login(function(response) {
-  if (response.status === 'connected') {
-    // Logged into your app and Facebook.
-  } else if (response.status === 'not_authorized') {
-    // The person is logged into Facebook, but not your app.
-  } else {
-    // The person is not logged into Facebook, so we're not sure if
-    // they are logged into this app or not.
-  }
-});
-</script>
