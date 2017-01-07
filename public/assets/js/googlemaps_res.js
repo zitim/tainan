@@ -2,16 +2,16 @@ var restaurants=[];
 var all=[];
 var focusInfoWindow;
 var map;
-var user_id=66;
 var markers = [];
 var focusList;
 var infoWindows=[];
-var userPosition = { lat: 23.973875, lng: 120.982024 };
+var userPosition = { lat: 22.997442, lng: 120.212622 };
 var date=new Date();
 var day=date.getDay();
 var hour=date.getHours();
 var minute=date.getMinutes();
 var nowtime=(hour*60)+minute;
+
 // nowtime=60;
 //console.log(nowtime);
   
@@ -24,8 +24,8 @@ var nowtime=(hour*60)+minute;
   
   function initMap() {
     map = new google.maps.Map(document.getElementById('map'), {
-      zoom: 12,
-      center: {lat: 22.999533, lng: 120.203401}
+      zoom: 11,
+      center: {lat: 23.125000, lng: 120.243401}
     });
 
 
@@ -77,8 +77,9 @@ var nowtime=(hour*60)+minute;
     var selected=[];
     var Opening=[];
       $("#opening_hours1").change(function(){
-
+        
         $( "#opening_hours1 option:selected" ).filter(function() {
+
           switch($('#opening_hours1').val()){
             case 'all':
               $('#resraurant_type2').remove();
@@ -93,7 +94,7 @@ var nowtime=(hour*60)+minute;
               );
 
               $("#resraurant_type1").change(function(){
-
+                document.getElementById("loader").style.display = "";
                 $( "#resraurant_type1 option:selected" ).filter(function() {
                   switch($('#resraurant_type1').val()){
                     case 'all':
@@ -359,6 +360,9 @@ var nowtime=(hour*60)+minute;
   }
 
   function create_Marker(dataCount,id,res_name,res_X,res_Y,res_address,res_phone,res_time,favorite,res_type) {
+
+    
+
     // Adds markers to the map.
     //console.log(typeof(res_type));
     infowindow = new google.maps.InfoWindow();
@@ -425,6 +429,8 @@ var nowtime=(hour*60)+minute;
     });
     markers.push(marker);
     
+    document.getElementById("loader").style.display = "none";
+    //document.getElementById("sitebody").style.display = "block";
     // var markerCluster = new MarkerClusterer(map, markers,
     //   {imagePath: 'assets/img/m'});
     //console.log(markerCluster);
@@ -531,7 +537,7 @@ var nowtime=(hour*60)+minute;
         '<li><button id="favorite" onclick="change_Favorite(\''+res_id+'\',\''+res_name+'\',\''+res_address+'\',\''+res_phone+'\',\''+res_time+'\', false ,$(this),\''+dataCount+'\')"><img src="https://raw.githubusercontent.com/zitim/Tainan_restaurant/master/public/assets/img/heart.png"></button><button onclick="window.open(\'https://maps.google.com/?saddr=' + userPosition.lat + ',' + userPosition.lng + '&daddr=' + res_address + '\',\'_blank\')" class="route"><img src="https://raw.githubusercontent.com/zitim/tainan/master/public/assets/img/google.png"></button></li>'+
         '</ul>');
       }else{//右邊地圖
-        console.log(listCount);
+        //console.log(listCount);
         $('#sidebar-left > li:nth-child(' + listCount + ') button:nth-child(' + 3 + ')').html('<img src="https://raw.githubusercontent.com/zitim/Tainan_restaurant/master/public/assets/img/heart.png">');
       }
 
@@ -562,7 +568,7 @@ var nowtime=(hour*60)+minute;
           '<li><button id="favorite" onclick="change_Favorite(\''+res_id+'\',\''+res_name+'\',\''+res_address+'\',\''+res_phone+'\',\''+res_time+'\', false ,$(this),\''+dataCount+'\')"><img src="https://raw.githubusercontent.com/zitim/Tainan_restaurant/master/public/assets/img/empty-heart.png"></button><button onclick="window.open(\'https://maps.google.com/?saddr=' + userPosition.lat + ',' + userPosition.lng + '&daddr=' + res_address + '\',\'_blank\')" class="route"><img src="https://raw.githubusercontent.com/zitim/tainan/master/public/assets/img/google.png"></button></li>'+
           '</ul>');
         }else{//右邊地圖
-          console.log(listCount);
+          //console.log(listCount);
           $('#sidebar-left > li:nth-child(' + listCount + ') button:nth-child(' + 3 + ')').html('<img src="https://raw.githubusercontent.com/zitim/Tainan_restaurant/master/public/assets/img/empty-heart.png">');
         }
     }
@@ -584,9 +590,8 @@ var nowtime=(hour*60)+minute;
     deleteMarkers();
     document.getElementById('sidebar-left').innerHTML = "";
 
-
     $("#opening_hours2").change(function(){
-
+      
       $( "#opening_hours2 option:selected" ).filter(function() {
         switch($('#opening_hours2').val()){
           case 'all':
@@ -606,10 +611,12 @@ var nowtime=(hour*60)+minute;
             document.getElementById('sidebar-left').innerHTML = "";
 
             $("#resraurant_type3").change(function(){
-
+              //document.getElementById("loader").style.display = "";
+              show_Favorite=[];
               $( "#resraurant_type3 option:selected" ).filter(function() {
                 switch($('#resraurant_type3').val()){
                   case 'all':
+                    //document.getElementById("loader").style.display = "";
                     //console.log(10);
                     selected=[];
                     deleteMarkers();
@@ -731,16 +738,17 @@ var nowtime=(hour*60)+minute;
             document.getElementById('sidebar-left').innerHTML = "";
             Opening=[];
             data=[];
-
+            
             $.get( "/list", function( data ) {
-              
+              show_Favorite=[];
               for (var i = 0; i < data.length; i++) {
                 if (data[i].favorite.indexOf(user_id)>=0) {
                   show_Favorite.push(data[i]);
                 }
               } 
+              
               for(var i=0;i<show_Favorite.length;i++){
-                console.log(show_Favorite.length);
+                //console.log(show_Favorite.length);
                 if(day!=show_Favorite[i].WorkingExcp&&show_Favorite[i].WorkingWeek[1]>=day&&day>=show_Favorite[i].WorkingWeek[0]){
                     switch(show_Favorite[i].WorkingTime.length){
                       case 2:
@@ -783,7 +791,7 @@ var nowtime=(hour*60)+minute;
               }
               data=Opening;
 
-              console.log(data);
+              //console.log(data);
 
               $("#resraurant_type4").change(function(){
 
@@ -874,29 +882,29 @@ var nowtime=(hour*60)+minute;
       }
     });
 
-    // if (focusInfoWindow != null) {
-    //   focusInfoWindow.close();
-    // }
-    // var infoWindow = new google.maps.InfoWindow({
-    //   content: '<div class="site"><h2><i class="fa fa-map-marker fa-lg" aria-hidden="true"></i>&nbsp;&nbsp;你的位置</h2></div>'
-    // });
-    // var marker = new google.maps.Marker({
-    //   position: userPosition,
-    //   title: "你的位置",
-    //   icon: "https://raw.githubusercontent.com/zitim/tainan/master/public/assets/img/girl.png",
-    // });
-    // marker.addListener('click', function() {
-    //   if (focusInfoWindow != null) {
-    //     focusInfoWindow.close();
-    //   }
-    //   infoWindow.open(map, marker);
-    //   focusInfoWindow = infoWindow;
-    // });
-    // marker.setMap(map);
-    // infoWindow.open(map, marker);
-    // focusInfoWindow = infoWindow;
-    // map.panTo(marker.getPosition());
-    // map.setZoom(12);
+    if (focusInfoWindow != null) {
+      focusInfoWindow.close();
+    }
+    var infoWindow = new google.maps.InfoWindow({
+      content: '<div class="site"><h2><i class="fa fa-map-marker fa-lg" aria-hidden="true"></i>&nbsp;&nbsp;你的位置</h2></div>'
+    });
+    var marker = new google.maps.Marker({
+      position: userPosition,
+      title: "你的位置",
+      icon: "https://raw.githubusercontent.com/zitim/tainan/master/public/assets/img/girl.png",
+    });
+    marker.addListener('click', function() {
+      if (focusInfoWindow != null) {
+        focusInfoWindow.close();
+      }
+      infoWindow.open(map, marker);
+      focusInfoWindow = infoWindow;
+    });
+    marker.setMap(map);
+    infoWindow.open(map, marker);
+    focusInfoWindow = infoWindow;
+    map.panTo(22.8658075, 120.2459855);
+    map.setZoom(11);
 
     }).trigger( "change" );
 
