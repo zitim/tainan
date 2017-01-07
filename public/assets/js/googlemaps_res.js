@@ -903,8 +903,8 @@ var nowtime=(hour*60)+minute;
     marker.setMap(map);
     infoWindow.open(map, marker);
     focusInfoWindow = infoWindow;
-    map.panTo(22.883156, 120.245706);
-    map.setZoom(11);
+    map.panTo(marker.getPosition());
+    map.setZoom(10);
 
     }).trigger( "change" );
 
