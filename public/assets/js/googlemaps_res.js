@@ -11,7 +11,6 @@ var day=date.getDay();
 var hour=date.getHours();
 var minute=date.getMinutes();
 var nowtime=(hour*60)+minute;
-day=7;
 
 // nowtime=60;
 //console.log(nowtime);
