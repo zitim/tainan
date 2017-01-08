@@ -8,9 +8,6 @@ var b=[];
 
 
 exports.index = function(req, res) {
-<<<<<<< HEAD
-    res.render('pages/index');
-=======
     if(req.session.check=='yes'){
          res.render('pages/index', {
             
@@ -24,7 +21,6 @@ exports.index = function(req, res) {
             
         });
     }
->>>>>>> 084a23fc06502d5f1756467cbace106233d87016
 };
 //列出資料
 exports.list = function(req, res) {
@@ -164,15 +160,6 @@ exports.edit = function(req, res) {
 
 }
 
-<<<<<<< HEAD
-exports.postAjax = function(req, res) {
-    // ajax
-    if (req.body.password == 1234) {
-        res.send('success');
-    } else(
-        res.send('error')
-    );
-=======
 exports.delete_session = function(req, res) {
     req.session.check='no'; 
     res.send(req.session.check);
@@ -183,7 +170,6 @@ exports.postAjax = function(req, res) {
     req.session.check='yes'; 
     
     res.send(req.session.name);
->>>>>>> 084a23fc06502d5f1756467cbace106233d87016
 };
 
 //get取得資料

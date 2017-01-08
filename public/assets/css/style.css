@@ -79,10 +79,7 @@
     background-color: transparent;
     border: none;
     outline:none;
-<<<<<<< HEAD
-=======
     cursor: pointer;
->>>>>>> 084a23fc06502d5f1756467cbace106233d87016
   }
   
   .header{
@@ -117,9 +114,6 @@
   .headerfont:hover{
     background:#F75000;
   }
-<<<<<<< HEAD
-
-=======
   .loginpage{
     height : 100%;
     width : 100%;
@@ -130,7 +124,6 @@
   #fb_login{
     float:center;
   }
->>>>>>> 084a23fc06502d5f1756467cbace106233d87016
   #top {
     background-color: #FFAF60;
     height: 5%;
@@ -152,11 +145,7 @@
 
   #map {
     height:90%;
-<<<<<<< HEAD
-    width: 70%;  
-=======
     width: 74%;  
->>>>>>> 084a23fc06502d5f1756467cbace106233d87016
     margin:0 auto;
     float:center;
   }
@@ -196,8 +185,6 @@
                           transparent 75%,
                           transparent)
   }
-<<<<<<< HEAD
-=======
 
   /* Center the loader */
   #loader {
@@ -245,7 +232,6 @@
     from{ bottom:-100px; opacity:0 } 
     to{ bottom:0; opacity:1 }
   }
->>>>>>> 084a23fc06502d5f1756467cbace106233d87016
  
   #fr{
     border-style:none;
@@ -286,16 +272,6 @@
     font-family: Arial;
     color: #ffffff;
     font-size: 16px;
-<<<<<<< HEAD
-    background: #3b5998;
-    /*padding: 7px 10px 7px 10px;*/
-    text-decoration: none;
-    border: none;
-  }
-
-  #btnLogout:hover {
-    background: #6d84b4;
-=======
     background: #FF7744;
     /*padding: 7px 10px 7px 10px;*/
     text-decoration: none;
@@ -307,7 +283,6 @@
   #btnLogout:hover {
     background: #FFAF60;
 /*     background: #FF7744; */
->>>>>>> 084a23fc06502d5f1756467cbace106233d87016
     text-decoration: none;
   }
 
@@ -317,11 +292,8 @@
     text-align: center;
     margin-left: auto;
     margin-right: auto; */
-<<<<<<< HEAD
-=======
     width:200px;
     height:200px;
->>>>>>> 084a23fc06502d5f1756467cbace106233d87016
     margin: auto;
   }
   #status{
@@ -444,9 +416,6 @@
   }
   .headerfont:hover{
     background:#F75000;
-<<<<<<< HEAD
-  }
-=======
   } 
   .loginpage{
     height : 100%;
@@ -455,7 +424,6 @@
     background-repeat: no-repeat;
     margin: 0 auto;
   } 
->>>>>>> 084a23fc06502d5f1756467cbace106233d87016
 
   #top {
     background-color: #FFAF60;
@@ -572,16 +540,6 @@
     font-family: Arial;
     color: #ffffff;
     font-size: 16px;
-<<<<<<< HEAD
-    background: #3b5998;
-    /*padding: 7px 10px 7px 10px;*/
-    text-decoration: none;
-    border: none;
-  }
-
-  #btnLogout:hover {
-    background: #6d84b4;
-=======
     background: #FF7744;
     /*padding: 7px 10px 7px 10px;*/
     text-decoration: none;
@@ -591,7 +549,6 @@
 
   #btnLogout:hover {
     background: #FF7744;
->>>>>>> 084a23fc06502d5f1756467cbace106233d87016
     text-decoration: none;
   }
 
@@ -727,8 +684,6 @@
   .headerfont:hover{
     background:#F75000;
   }
-<<<<<<< HEAD
-=======
   
   .loginpage{
     height : 100%;
@@ -737,7 +692,6 @@
     background-repeat: no-repeat;
     margin: 0 auto;
   } 
->>>>>>> 084a23fc06502d5f1756467cbace106233d87016
 
   #top {
     background-color: #FFAF60;
@@ -854,16 +808,6 @@
     font-family: Arial;
     color: #ffffff;
     font-size: 16px;
-<<<<<<< HEAD
-    background: #3b5998;
-    /*padding: 7px 10px 7px 10px;*/
-    text-decoration: none;
-    border: none;
-  }
-
-  #btnLogout:hover {
-    background: #6d84b4;
-=======
     background: #FF7744;;
     /*padding: 7px 10px 7px 10px;*/
     text-decoration: none;
@@ -873,7 +817,6 @@
 
   #btnLogout:hover {
     background: #FF7744;
->>>>>>> 084a23fc06502d5f1756467cbace106233d87016
     text-decoration: none;
   }
 
@@ -1011,8 +954,6 @@
     background:#F75000;
   }
 
-<<<<<<< HEAD
-=======
   .loginpage{
     height : 100%;
     width : 100%;
@@ -1021,7 +962,6 @@
     margin: 0 auto;
   } 
   
->>>>>>> 084a23fc06502d5f1756467cbace106233d87016
   #top {
     background-color: #FFAF60;
     height: 5%;
@@ -1137,16 +1077,6 @@
     font-family: Arial;
     color: #ffffff;
     font-size: 16px;
-<<<<<<< HEAD
-    background: #3b5998;
-    /*padding: 7px 10px 7px 10px;*/
-    text-decoration: none;
-    border: none;
-  }
-
-  #btnLogout:hover {
-    background: #6d84b4;
-=======
     background: #FF7744;
     /*padding: 7px 10px 7px 10px;*/
     text-decoration: none;
@@ -1156,7 +1086,6 @@
 
   #btnLogout:hover {
     background: #FF7744;
->>>>>>> 084a23fc06502d5f1756467cbace106233d87016
     text-decoration: none;
   }
 

@@ -7,17 +7,6 @@ var focusList;
 var infoWindows=[];
 var userPosition = { lat: 22.997442, lng: 120.212622 };
 var date=new Date();
-<<<<<<< HEAD
-var day=date.getDay();   
-day=7;
-var hour=date.getHours();
-var minute=date.getMinutes();
-var nowtime=(hour*60)+minute;
-
-// nowtime=60;
-//console.log(nowtime);
-  
-=======
 var day=date.getDay();
 var hour=date.getHours();
 var minute=date.getMinutes();
@@ -26,8 +15,6 @@ day=7;
 
 // nowtime=60;
 //console.log(nowtime);
->>>>>>> 084a23fc06502d5f1756467cbace106233d87016
-
 
   jQuery(document).ready(function($) {
       // $.get('/getJson').success(function(restaurants){
