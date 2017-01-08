@@ -15,8 +15,6 @@ day=7;
 
 // nowtime=60;
 //console.log(nowtime);
-  
-
 
   jQuery(document).ready(function($) {
       // $.get('/getJson').success(function(restaurants){
@@ -46,9 +44,6 @@ day=7;
     function success(position) {
         var userLat = position.coords.latitude;
         var userLng = position.coords.longitude;
-
-        console.log(userLat);
-        console.log(userLng);
 
         userPosition = {
             lat: userLat,
