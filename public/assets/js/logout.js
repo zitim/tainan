@@ -1,18 +1,19 @@
 function Logout() {
+ document.getElementById("loader").style.display = "";
 FB.logout(function(response) {
 // user is now logged out
 });
 var str='aa';
  $.post('/delete_session', {'password': str}).success(function(data){
-        console.log(data);
+        //console.log(data);
       });
       setTimeout(function () {
     window.location.reload(1);
 }, 2500);
 }
 function statusChangeCallback(response) {
-    console.log('statusChangeCallback');
-    console.log(response);
+//     console.log('statusChangeCallback');
+//     console.log(response);
     // The response object is returned with a status field that lets the
     // app know the current login status of the person.
     // Full docs on the response object can be found in the documentation
@@ -20,18 +21,16 @@ function statusChangeCallback(response) {
     if (response.status === 'connected') {
       // Logged into your app and Facebook.
  
-      document.getElementById('status1').innerHTML ='';
+    
     } else if (response.status === 'not_authorized') {
        
       // The person is logged into Facebook, but not your app.
-      document.getElementById('status').innerHTML = 'Please log ' +
-        'into this app.';
+  
     } else {
     
       // The person is not logged into Facebook, so we're not sure if
       // they are logged into this app or not.
-      document.getElementById('status').innerHTML = 'Please log ' +
-        'into this facebook.';
+     
         
     }
   }

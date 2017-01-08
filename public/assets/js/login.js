@@ -11,11 +11,11 @@
       testAPI();
     } else if (response.status === 'not_authorized') {
       // The person is logged into Facebook, but not your app.
-      document.getElementById('status').innerHTML = '';
+     
     } else {
       // The person is not logged into Facebook, so we're not sure if
       // they are logged into this app or not.
-      document.getElementById('status').innerHTML = '';
+     
     }
   }
   // This function is called when someone finishes with the Login
@@ -67,8 +67,7 @@
         console.log(data);
      });
       console.log('Successful login for: ' + response.name);
-      document.getElementById('status').innerHTML =
-       ''
+      
     });
     setTimeout(function () {
     window.location.reload(1);

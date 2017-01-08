@@ -16,6 +16,7 @@ exports.index = function(req, res) {
     }else{
 
         res.render('pages/login', {
+            layout: 'layouttest.ejs',
             ogheadTitle: '首頁內容',
             
         });
@@ -158,6 +159,7 @@ exports.edit = function(req, res) {
     // });
 
 }
+
 exports.delete_session = function(req, res) {
     req.session.check='no'; 
     res.send(req.session.check);
@@ -169,7 +171,6 @@ exports.postAjax = function(req, res) {
     
     res.send(req.session.name);
 };
-
 
 //get取得資料
 exports.getAjax = function(req, res) {

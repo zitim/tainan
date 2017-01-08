@@ -22,7 +22,7 @@
     border-color: #BEBEBE ;
   }
   ul{ 
-    /*list-style:none; */
+    list-style:none;
      border-top-style:dashed;
      border-bottom-style:dashed;
      border-width:1px;
@@ -79,6 +79,7 @@
     background-color: transparent;
     border: none;
     outline:none;
+    cursor: pointer;
   }
   
   .header{
@@ -113,11 +114,16 @@
   .headerfont:hover{
     background:#F75000;
   }
-
   .loginpage{
-    background-image: url("https://raw.githubusercontent.com/zitim/Tainan_restaurant/master/public/assets/img/tainan.jpg");
+    height : 100%;
+    width : 100%;
+    background-image: url("https://raw.githubusercontent.com/zitim/tainan/master/public/assets/img/egg.jpg");
+    background-repeat: no-repeat;
+    margin: 0 auto;
   }
-
+  #fb_login{
+    float:center;
+  }
   #top {
     background-color: #FFAF60;
     height: 5%;
@@ -139,7 +145,7 @@
 
   #map {
     height:90%;
-    width: 70%;  
+    width: 74%;  
     margin:0 auto;
     float:center;
   }
@@ -178,6 +184,53 @@
                           rgba(255, 255, 255, .2) 75%,
                           transparent 75%,
                           transparent)
+  }
+
+  /* Center the loader */
+  #loader {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    z-index: 1;
+    width: 150px;
+    height: 150px;
+    margin: -75px 0 0 -75px;
+    border: 16px solid #c9c9c9;
+    border-radius: 50%;
+    border-top: 16px solid #FF7744;
+    /*width: 120px;
+    height: 120px;*/
+    -webkit-animation: spin 2s linear infinite;
+    animation: spin 2s linear infinite;
+  }
+
+  @-webkit-keyframes spin {
+    0% { -webkit-transform: rotate(0deg); }
+    100% { -webkit-transform: rotate(360deg); }
+  }
+
+  @keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+  }
+
+  /* Add animation to "page content" */
+  /*.animate-bottom {
+    position: relative;
+    -webkit-animation-name: animatebottom;
+    -webkit-animation-duration: 2s;
+    animation-name: animatebottom;
+    animation-duration: 2s
+  }*/
+
+  @-webkit-keyframes animatebottom {
+    from { bottom:-100px; opacity:0 } 
+    to { bottom:0px; opacity:1 }
+  }
+
+  @keyframes animatebottom { 
+    from{ bottom:-100px; opacity:0 } 
+    to{ bottom:0; opacity:1 }
   }
  
   #fr{
@@ -219,25 +272,29 @@
     font-family: Arial;
     color: #ffffff;
     font-size: 16px;
-    background: #3b5998;
+    background: #FF7744;
     /*padding: 7px 10px 7px 10px;*/
     text-decoration: none;
     border: none;
+    outline:none;
+    cursor: pointer;
   }
 
   #btnLogout:hover {
-    background: #6d84b4;
+    background: #FFAF60;
+/*     background: #FF7744; */
     text-decoration: none;
   }
 
   #fblogin{
-/*         vertical-align: middle;
+/*  vertical-align: middle;
     float:center;
     text-align: center;
     margin-left: auto;
     margin-right: auto; */
+    width:200px;
+    height:200px;
     margin: auto;
-    background-image: url("https://raw.githubusercontent.com/zitim/Tainan_restaurant/master/public/assets/img/tainan.jpg");
   }
   #status{
     text-align: right;
@@ -359,7 +416,14 @@
   }
   .headerfont:hover{
     background:#F75000;
-  }
+  } 
+  .loginpage{
+    height : 100%;
+    width : 100%;
+    background-image: url("https://raw.githubusercontent.com/zitim/tainan/master/public/assets/img/egg3.jpg");
+    background-repeat: no-repeat;
+    margin: 0 auto;
+  } 
 
   #top {
     background-color: #FFAF60;
@@ -433,7 +497,7 @@
   #fr{
     display:inline;
     border-style:none;
-    width: 50%;
+    width: 80%;
     float:center;
     border-bottom: 1px double #d2d2d2;
     list-style-type:none;
@@ -476,14 +540,15 @@
     font-family: Arial;
     color: #ffffff;
     font-size: 16px;
-    background: #3b5998;
+    background: #FF7744;
     /*padding: 7px 10px 7px 10px;*/
     text-decoration: none;
     border: none;
+    outline:none;
   }
 
   #btnLogout:hover {
-    background: #6d84b4;
+    background: #FF7744;
     text-decoration: none;
   }
 
@@ -619,6 +684,14 @@
   .headerfont:hover{
     background:#F75000;
   }
+  
+  .loginpage{
+    height : 100%;
+    width : 100%;
+    background-image: url("https://raw.githubusercontent.com/zitim/tainan/master/public/assets/img/egg3.jpg");
+    background-repeat: no-repeat;
+    margin: 0 auto;
+  } 
 
   #top {
     background-color: #FFAF60;
@@ -692,7 +765,7 @@
   #fr{
     display:inline;
     border-style:none;
-    width: 50%;
+    width: 80%;
     float:center;
     border-bottom: 1px double #d2d2d2;
     list-style-type:none;
@@ -735,19 +808,20 @@
     font-family: Arial;
     color: #ffffff;
     font-size: 16px;
-    background: #3b5998;
+    background: #FF7744;;
     /*padding: 7px 10px 7px 10px;*/
     text-decoration: none;
     border: none;
+    outline:none;
   }
 
   #btnLogout:hover {
-    background: #6d84b4;
+    background: #FF7744;
     text-decoration: none;
   }
 
   #fblogin{
-/*         vertical-align: middle;
+/*  vertical-align: middle;
     float:center;
     text-align: center;
     margin-left: auto;
@@ -880,6 +954,14 @@
     background:#F75000;
   }
 
+  .loginpage{
+    height : 100%;
+    width : 100%;
+    background-image: url("https://raw.githubusercontent.com/zitim/tainan/master/public/assets/img/egg3.jpg");
+    background-repeat: no-repeat;
+    margin: 0 auto;
+  } 
+  
   #top {
     background-color: #FFAF60;
     height: 5%;
@@ -952,7 +1034,7 @@
   #fr{
     display:inline;
     border-style:none;
-    width: 50%;
+    width: 80%;
     float:center;
     border-bottom: 1px double #d2d2d2;
     list-style-type:none;
@@ -995,14 +1077,15 @@
     font-family: Arial;
     color: #ffffff;
     font-size: 16px;
-    background: #3b5998;
+    background: #FF7744;
     /*padding: 7px 10px 7px 10px;*/
     text-decoration: none;
     border: none;
+    outline:none;
   }
 
   #btnLogout:hover {
-    background: #6d84b4;
+    background: #FF7744;
     text-decoration: none;
   }
 
