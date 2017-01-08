@@ -47,6 +47,9 @@ day=7;
         var userLat = position.coords.latitude;
         var userLng = position.coords.longitude;
 
+        console.log(userLat);
+        console.log(userLng);
+
         userPosition = {
             lat: userLat,
             lng: userLng
